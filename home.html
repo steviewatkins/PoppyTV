@@ -51,7 +51,6 @@
       cursor: pointer; transition: background 0.15s, transform 0.15s, opacity 0.15s; white-space: nowrap;
     }
     .upload-btn:hover { background: #38f2e1; transform: translateY(-1px); }
-
     .upload-btn {
       position: relative;
       overflow: hidden;
@@ -63,7 +62,7 @@
       left: -120%;
       width: 60%;
       height: 100%;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.35), transparent 100%);
       transform: skewX(-20deg);
       animation: sheen 5.5s infinite;
       pointer-events: none;
@@ -161,26 +160,28 @@
       color: #fff;
       border-color: rgba(255,120,120,0.7);
     }
-    #lightbox-admin-actions {
+    #lightbox-edit {
       display: none;
-      margin-top: 40px;
-      text-align: center;
-    }
-    #lightbox-update {
-      background: rgba(113,120,132,0.95);
-      border: 1px solid rgba(255,255,255,0.16);
-      color: #fff;
+      margin: 40px 10px 0 auto;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.88);
       border-radius: 999px;
       padding: 7px 12px;
       font-family: "Work Sans", sans-serif;
       font-size: 12px;
       cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
-      margin-right: 8px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
-    #lightbox-update:hover {
-      background: rgba(132,141,155,0.95);
-      border-color: rgba(255,255,255,0.24);
+    #lightbox-edit:hover {
+      background: rgba(255,255,255,0.16);
+      color: #fff;
+      border-color: rgba(255,255,255,0.34);
+    }
+    .lightbox-bottom-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
     }
 
     .delete-confirm-overlay {
@@ -245,6 +246,87 @@
       color: #fff;
     }
 
+    .details-edit-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      z-index: 1200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .details-edit-overlay.active { display: flex; }
+    .details-edit-modal {
+      width: 100%;
+      max-width: 460px;
+      background: #10202f;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+      padding: 24px 22px 20px;
+      color: #fff;
+    }
+    .details-edit-title {
+      font-family: "Libre Baskerville", serif;
+      font-size: 22px;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 8px;
+    }
+    .details-edit-copy {
+      font-size: 14px;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 18px;
+    }
+    .details-edit-field { margin-bottom: 14px; }
+    .details-edit-field label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .details-edit-field input {
+      width: 100%;
+      box-sizing: border-box;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      color: #fff;
+      padding: 11px 12px;
+      font-family: "Work Sans", sans-serif;
+      font-size: 14px;
+      outline: none;
+    }
+    .details-edit-field input:focus { border-color: rgba(86,255,240,0.8); }
+    .details-edit-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+    .details-edit-cancel,
+    .details-edit-save {
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-family: "Work Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+    .details-edit-cancel {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+    .details-edit-save {
+      background: #56fff0;
+      color: #1F7BCC;
+    }
+
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
@@ -281,7 +363,8 @@
 
       .card-uploaded-by { display: none; }
       #lightbox-meta { display: block; }
-      #lightbox-delete { width: auto; margin-top: 34px; }
+      #lightbox-delete, #lightbox-edit { width: auto; margin-top: 34px; }
+      .lightbox-bottom-actions { width: 100%; justify-content: flex-end; }
       .sticky-logo { height: 26px; }
       .hero { padding: 32px 16px 32px; }
       .logo-svg { width: 65%; }
@@ -331,7 +414,7 @@
         <button type="button" id="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
       </div>
     </div>
-    <div id="lightbox-admin-actions"><button type="button" id="lightbox-update" onclick="openMetadataModal()">Update details</button><button type="button" id="lightbox-delete" onclick="openDeleteConfirm()">Delete video</button></div>
+    <div class="lightbox-bottom-actions"><button type="button" id="lightbox-edit" onclick="openEditDetails()" style="display:none">Update details</button><button type="button" id="lightbox-delete" onclick="openDeleteConfirm()" style="display:none">Delete video</button></div>
   </div>
 </div>
 
@@ -418,18 +501,21 @@ function updateLightboxMeta(details) {
   if (details.uploadedBy) parts.push('Uploaded by ' + details.uploadedBy);
   document.getElementById('lightbox-meta').textContent = parts.join(' • ');
   var deleteBtn = document.getElementById('lightbox-delete');
+  var editBtn = document.getElementById('lightbox-edit');
   if (details.source === 'community' && details.videoId) {
     deleteBtn.style.display = 'block';
+    editBtn.style.display = 'block';
   } else {
     deleteBtn.style.display = 'none';
+    editBtn.style.display = 'none';
   }
   currentLightbox = {
     videoId: details.videoId || '',
     source: details.source || '',
     category: details.category || '',
-    title: details.title || t || '',
-    year: details.year || '',
-    submittedBy: details.submittedBy || ''
+    title: details.title || document.getElementById('lightbox-title').textContent || '',
+    uploadedBy: details.uploadedBy || '',
+    year: details.year || ''
   };
 }
 function openVideo(e, d, t, details) {
@@ -440,6 +526,102 @@ function openVideo(e, d, t, details) {
   document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+
+function openEditDetails() {
+  if (!currentLightbox.videoId || currentLightbox.source !== 'community') return;
+  document.getElementById('edit-title').value = currentLightbox.title || '';
+  document.getElementById('edit-year').value = currentLightbox.year || '';
+  document.getElementById('edit-submitted-by').value = currentLightbox.uploadedBy || '';
+  document.getElementById('details-edit-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeEditDetails() {
+  document.getElementById('details-edit-overlay').classList.remove('active');
+  document.body.style.overflow = document.getElementById('lightbox').classList.contains('active') ? 'hidden' : '';
+}
+function handleEditOverlayClick(event) {
+  if (event.target === document.getElementById('details-edit-overlay')) closeEditDetails();
+}
+async function saveEditDetails() {
+  if (!currentLightbox.videoId || currentLightbox.source !== 'community') return;
+  var title = document.getElementById('edit-title').value.trim();
+  var year = document.getElementById('edit-year').value.trim();
+  var submittedBy = document.getElementById('edit-submitted-by').value.trim();
+  if (!title) {
+    window.alert('Please add a title.');
+    return;
+  }
+  var saveBtn = document.getElementById('details-edit-save');
+  var oldLabel = saveBtn.textContent;
+  saveBtn.disabled = true;
+  saveBtn.textContent = 'Saving…';
+  try {
+    var res = await fetch(`${WORKER_URL}/save-video`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        videoId: currentLightbox.videoId,
+        title,
+        year,
+        submittedBy,
+        category: currentLightbox.category
+      })
+    });
+    var data = await res.json().catch(function(){ return {}; });
+    if (!res.ok) throw new Error(data.error || 'Could not update details.');
+    var card = document.querySelector(`[data-video-id="${CSS.escape(currentLightbox.videoId)}"]`);
+    if (card) {
+      card.dataset.title = title;
+      card.dataset.sortyear = year || '';
+      card.dataset.uploadedBy = submittedBy || '';
+      card.dataset.category = currentLightbox.category || '';
+      var titleEl = card.querySelector('.card-title');
+      if (titleEl) titleEl.textContent = title;
+      var meta = card.querySelector('.card-meta');
+      if (meta) {
+        meta.innerHTML = '';
+        if (year) {
+          var yearSpan = document.createElement('span');
+          yearSpan.className = 'card-year';
+          yearSpan.textContent = year;
+          meta.appendChild(yearSpan);
+        }
+        if (submittedBy) {
+          var bySpan = document.createElement('span');
+          bySpan.className = 'card-uploaded-by';
+          bySpan.textContent = '↑ ' + submittedBy;
+          meta.appendChild(bySpan);
+        }
+      }
+      card.onclick = function() {
+        openVideo(card.dataset.embed, card.dataset.dl, card.dataset.title, {
+          videoId: card.dataset.videoId || '',
+          source: card.dataset.uploadSource || 'original',
+          uploadedBy: card.dataset.uploadedBy || '',
+          year: card.dataset.sortyear || '',
+          category: card.dataset.category || ''
+        });
+      };
+    }
+    updateLightboxMeta({
+      videoId: currentLightbox.videoId,
+      source: currentLightbox.source,
+      category: currentLightbox.category,
+      title,
+      uploadedBy: submittedBy,
+      year
+    });
+    document.getElementById('lightbox-title').textContent = title;
+    sortCategoryGrid(currentLightbox.category);
+    closeEditDetails();
+  } catch (err) {
+    window.alert(err.message || 'Could not update details.');
+  } finally {
+    saveBtn.disabled = false;
+    saveBtn.textContent = oldLabel;
+  }
+}
+
 var deleteConfirmStep = 0;
 function openDeleteConfirm() {
   if (!currentLightbox.videoId || currentLightbox.source !== 'community') return;
@@ -510,7 +692,8 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('active');
   document.getElementById('lightbox-iframe').src = '';
   document.getElementById('lightbox-meta').textContent = '';
-  document.getElementById('lightbox-admin-actions').style.display = 'none';
+  document.getElementById('lightbox-delete').style.display = 'none';
+  document.getElementById('lightbox-edit').style.display = 'none';
   currentLightbox = { videoId: '', source: '', category: '' };
   document.body.style.overflow = '';
 }
@@ -576,7 +759,7 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
     <div id="upload-success" style="display:none" class="upload-success-state">
       <div class="upload-success-icon" id="upload-success-icon">✓</div>
       <h3>Video uploaded!</h3>
-      <p>It’s in the <strong id="success-cat"></strong> section now. You may need to refresh the page to see it appear straight away.</p>
+      <p>It’s in the <strong id="success-cat"></strong> section now. You may need to refresh the page.</p>
       <button type="button" class="upload-submit" onclick="closeUploadModal()">Done</button>
     </div>
   </div>
@@ -1100,16 +1283,16 @@ async function submitUpload() {
   const progressLabel = document.getElementById('upload-progress-label');
   progressWrap.style.display = 'block';
   progressFill.style.width = '0%';
-  progressLabel.textContent = 'Preparing upload… this may take a minute';
+  progressLabel.textContent = 'Preparing upload… This may take a minute.';
   mountUploadLottie();
 
   try {
     const creds = await getUploadCredentials(title);
-    progressLabel.textContent = 'Uploading video… this may take a minute';
+    progressLabel.textContent = 'Uploading video… This may take a minute.';
     await uploadFileWithTus(file, creds, progressFill, progressLabel);
 
     progressFill.style.width = '100%';
-    progressLabel.textContent = 'Saving… this may take a minute';
+    progressLabel.textContent = 'Finalising upload… This may take a minute.';
 
     const saveRes = await fetch(`${WORKER_URL}/save-video`, {
       method: 'POST',
@@ -1132,100 +1315,33 @@ async function submitUpload() {
   }
 }
 
-
-function openMetadataModal() {
-  if (!currentLightbox.videoId || currentLightbox.source !== 'community') return;
-  document.getElementById('metadata-error').style.display = 'none';
-  document.getElementById('metadata-title').value = currentLightbox.title || '';
-  document.getElementById('metadata-year').value = currentLightbox.year || '';
-  document.getElementById('metadata-submitted-by').value = currentLightbox.submittedBy || '';
-  document.getElementById('metadata-overlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeMetadataModal() {
-  document.getElementById('metadata-overlay').classList.remove('active');
-  document.body.style.overflow = document.getElementById('lightbox').classList.contains('active') ? 'hidden' : '';
-}
-function handleMetadataOverlayClick(event) {
-  if (event.target === document.getElementById('metadata-overlay')) closeMetadataModal();
-}
-async function saveMetadata() {
-  if (!currentLightbox.videoId || currentLightbox.source !== 'community') return;
-
-  var saveBtn = document.getElementById('metadata-save');
-  var errEl = document.getElementById('metadata-error');
-  var title = document.getElementById('metadata-title').value.trim();
-  var year = document.getElementById('metadata-year').value.trim();
-  var submittedBy = document.getElementById('metadata-submitted-by').value.trim();
-  if (!title) {
-    errEl.textContent = 'Please add a title.';
-    errEl.style.display = 'block';
-    return;
-  }
-
-  saveBtn.disabled = true;
-  saveBtn.textContent = 'Saving…';
-  errEl.style.display = 'none';
-
-  try {
-    const res = await fetch(`${WORKER_URL}/save-video`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        videoId: currentLightbox.videoId,
-        title,
-        year,
-        submittedBy,
-        category: currentLightbox.category
-      }),
-    });
-    if (!res.ok) throw new Error('Could not update details');
-    const data = await res.json();
-    const entry = data.entry || {};
-    const card = document.querySelector(`[data-video-id="${CSS.escape(currentLightbox.videoId)}"]`);
-    if (card) {
-      card.dataset.title = entry.title || title;
-      card.dataset.sortyear = entry.year || year || '';
-      card.dataset.submittedBy = entry.submittedBy || submittedBy || '';
-      const titleEl = card.querySelector('.card-title');
-      if (titleEl) titleEl.textContent = entry.title || title;
-      let yearEl = card.querySelector('.card-year');
-      if ((entry.year || year) && !yearEl) {
-        yearEl = document.createElement('span');
-        yearEl.className = 'card-year';
-        const meta = card.querySelector('.card-meta') || card.querySelector('.card-info');
-        if (meta) meta.appendChild(yearEl);
-      }
-      if (yearEl) yearEl.textContent = entry.year || year || '';
-      let byEl = card.querySelector('.card-uploaded-by');
-      if ((entry.submittedBy || submittedBy) && !byEl) {
-        byEl = document.createElement('span');
-        byEl.className = 'card-uploaded-by';
-        const metaWrap = card.querySelector('.card-meta');
-        if (metaWrap) metaWrap.appendChild(byEl);
-      }
-      if (byEl) byEl.textContent = entry.submittedBy || submittedBy || '';
-      sortCategoryGrid(currentLightbox.category);
-    }
-    currentLightbox.title = entry.title || title;
-    currentLightbox.year = entry.year || year || '';
-    currentLightbox.submittedBy = entry.submittedBy || submittedBy || '';
-    document.getElementById('lightbox-title').textContent = currentLightbox.title;
-    updateLightboxMeta(currentLightbox);
-    closeMetadataModal();
-  } catch (err) {
-    errEl.textContent = err.message || 'Could not update details';
-    errEl.style.display = 'block';
-  } finally {
-    saveBtn.disabled = false;
-    saveBtn.textContent = 'Save details';
-  }
-}
-
-
 decorateCompilationCards();
 loadCommunityUploads();
 </script>
+
+
+<div id="details-edit-overlay" class="details-edit-overlay" onclick="handleEditOverlayClick(event)">
+  <div class="details-edit-modal">
+    <div class="details-edit-title">Update video details</div>
+    <div class="details-edit-copy">You can update the title, year and who it was submitted by for community uploads.</div>
+    <div class="details-edit-field">
+      <label for="edit-title">Title</label>
+      <input id="edit-title" type="text" autocomplete="off">
+    </div>
+    <div class="details-edit-field">
+      <label for="edit-year">Year</label>
+      <input id="edit-year" type="number" min="1950" max="2099">
+    </div>
+    <div class="details-edit-field">
+      <label for="edit-submitted-by">Submitted by</label>
+      <input id="edit-submitted-by" type="text" autocomplete="off">
+    </div>
+    <div class="details-edit-actions">
+      <button type="button" class="details-edit-cancel" onclick="closeEditDetails()">Cancel</button>
+      <button type="button" class="details-edit-save" id="details-edit-save" onclick="saveEditDetails()">Save details</button>
+    </div>
+  </div>
+</div>
 
 <div id="delete-confirm-overlay" class="delete-confirm-overlay" onclick="handleDeleteOverlayClick(event)">
   <div class="delete-confirm-modal">
@@ -1238,25 +1354,6 @@ loadCommunityUploads();
     </div>
   </div>
 </div>
-
-
-<div id="metadata-overlay" class="delete-confirm-overlay" onclick="handleMetadataOverlayClick(event)">
-  <div class="delete-confirm-modal" style="background:#13202b;border-color:rgba(255,255,255,0.12);">
-    <div class="delete-confirm-title" style="color:#fff;">Update video details</div>
-    <div class="delete-confirm-copy" style="margin-bottom:14px;">Edit the title, year, and who it was submitted by.</div>
-    <div style="display:flex;flex-direction:column;gap:10px;">
-      <input id="metadata-title" type="text" placeholder="Title" style="width:100%;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:#0f2030;color:#fff;font-family:'Work Sans',sans-serif;font-size:14px;">
-      <input id="metadata-year" type="text" inputmode="numeric" placeholder="Year" style="width:100%;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:#0f2030;color:#fff;font-family:'Work Sans',sans-serif;font-size:14px;">
-      <input id="metadata-submitted-by" type="text" placeholder="Submitted by" style="width:100%;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:#0f2030;color:#fff;font-family:'Work Sans',sans-serif;font-size:14px;">
-      <div id="metadata-error" style="display:none;color:#ff8b8b;font-size:12px;"></div>
-    </div>
-    <div class="delete-confirm-actions" style="margin-top:18px;">
-      <button type="button" class="delete-confirm-cancel" onclick="closeMetadataModal()">Cancel</button>
-      <button type="button" class="delete-confirm-confirm" id="metadata-save" onclick="saveMetadata()">Save details</button>
-    </div>
-  </div>
-</div>
-
 
 </body>
 </html>
