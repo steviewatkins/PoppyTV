@@ -1,0 +1,10 @@
+name = "poppytv-upload-worker"
+main = "poppytv-upload-worker-updated.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "POPPYTV_UPLOADS"
+id      = "b12dbb148e1d448fbc9e16f507c8e049"
+
+[vars]
+# Add your secrets via: wrangler secret put BUNNY_API_KEY --name poppytv-upload-worker
