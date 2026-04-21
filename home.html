@@ -46,11 +46,11 @@
 
     .upload-btn {
       display: inline-flex; align-items: center; gap: 7px; margin-left: auto;
-      padding: 9px 16px; background: #e8620a; color: #fff; border: none;
+      padding: 9px 16px; background: var(--blue); color: #fff; border: none;
       border-radius: 999px; font-family: "Work Sans", sans-serif; font-size: 13px; font-weight: 600;
       cursor: pointer; transition: background 0.15s, transform 0.15s, opacity 0.15s; white-space: nowrap;
     }
-    .upload-btn:hover { background: #cf5608; transform: translateY(-1px); }
+    .upload-btn:hover { background: #1868b0; transform: translateY(-1px); }
 
 
     /* ── CATALOGUE ── */
@@ -95,8 +95,6 @@
     .card-title { font-size: 13px; font-weight: 400; color: #444; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color 0.15s; }
     .card:hover .card-title { color: #111; }
     .card-year { font-size: 11px; color: #1F7BCC; white-space: nowrap; flex-shrink: 0; font-weight: 600; }
-    .card-meta { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-    .card-uploaded-by { font-size: 10px; color: rgba(31,123,204,0.9); white-space: nowrap; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
 
     /* ── LIGHTBOX ── */
     #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 999; align-items: center; justify-content: center; }
@@ -188,13 +186,9 @@
 <div class="catalogue">
   <section id="compilations">
   <h2>Compilations</h2>
-  <button type="button" class="upload-btn" onclick="openUploadModal()" style="margin:0 0 18px 0">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-    Upload a Video
-  </button>
 
   <h3 class="subsection-label">Milestones</h3>
-  <div class="card-grid" id="milestones-grid">
+  <div class="card-row">
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/31ac2ff5-a099-48f8-b37f-0f4cf2250e0d?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/31ac2ff5-a099-48f8-b37f-0f4cf2250e0d/play_720p.mp4&download=1" data-title="Roger's 60th"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/31ac2ff5-a099-48f8-b37f-0f4cf2250e0d/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">Roger's 60th</span></div></div>
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/d9aee0fc-d051-493a-a23c-bf54baa0fee3?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/d9aee0fc-d051-493a-a23c-bf54baa0fee3/play_720p.mp4&download=1" data-title="Julie's 60th"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/d9aee0fc-d051-493a-a23c-bf54baa0fee3/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">Julie's 60th</span></div></div>
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/b214f6ec-5009-409c-b4db-75e8c0147f52?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/b214f6ec-5009-409c-b4db-75e8c0147f52/play_720p.mp4&download=1" data-title="Marnee's 60th"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/b214f6ec-5009-409c-b4db-75e8c0147f52/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">Marnee's 60th</span></div></div>
@@ -210,7 +204,7 @@
   </div>
 
   <h3 class="subsection-label">Holidays</h3>
-  <div class="card-grid" id="holidays-grid">
+  <div class="card-row">
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/8a943322-ada9-4699-9477-356b1acd6b26?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/8a943322-ada9-4699-9477-356b1acd6b26/play_720p.mp4&download=1" data-title="NY 2019"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/8a943322-ada9-4699-9477-356b1acd6b26/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">NY 2019</span></div></div>
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/b9144833-f841-4551-a2dd-374c118e6b2b?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/b9144833-f841-4551-a2dd-374c118e6b2b/play_720p.mp4&download=1" data-title="Stevie & Ant USA"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/b9144833-f841-4551-a2dd-374c118e6b2b/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">Stevie & Ant USA</span></div></div>
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/357b19fd-9d73-4402-8795-518c5509a073?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/357b19fd-9d73-4402-8795-518c5509a073/play_720p.mp4&download=1" data-title="Down South"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/357b19fd-9d73-4402-8795-518c5509a073/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">Down South</span></div></div>
@@ -218,7 +212,7 @@
   </div>
 
   <h3 class="subsection-label">Family</h3>
-  <div class="card-grid" id="family-grid">
+  <div class="card-row">
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/c97f8cc7-9a9a-4422-8fcf-bb8e76fcdfec?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/c97f8cc7-9a9a-4422-8fcf-bb8e76fcdfec/play_720p.mp4&download=1" data-title="PoppyTV Film"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/c97f8cc7-9a9a-4422-8fcf-bb8e76fcdfec/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">PoppyTV Film</span></div></div>
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/aa95f6b8-5047-4a14-bb8f-7556a64cf222?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/aa95f6b8-5047-4a14-bb8f-7556a64cf222/play_720p.mp4&download=1" data-title="Remember"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/aa95f6b8-5047-4a14-bb8f-7556a64cf222/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">Remember</span></div></div>
   </div>
@@ -533,16 +527,9 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
 .upload-success-state strong { color: var(--teal); }
 </style>
 
-<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
-
 <script>
-// ── UPLOAD MODAL + COMMUNITY UPLOADS ────────────────────────────────────────
+// ── UPLOAD MODAL ─────────────────────────────────────────────────────────────
 const WORKER_URL = 'https://poppytv-upload-worker.hello-291.workers.dev';
-const BUNNY_LIBRARY_ID = '636169';
-const BUNNY_CDN_HOST = 'vz-82cf94cd-f52.b-cdn.net';
-const BUNNY_TUS_ENDPOINT = 'https://video.bunnycdn.com/tusupload';
-const categoryLabels = { milestones: 'Milestones', holidays: 'Holidays', family: 'Family' };
-let communityUploadsLoaded = false;
 
 function openUploadModal() {
   document.getElementById('upload-modal').classList.add('active');
@@ -570,6 +557,61 @@ function fileSelected(input) {
   document.getElementById('upload-drop').classList.add('has-file');
 }
 
+
+function getCompilationGrid(category) {
+  const labels = Array.from(document.querySelectorAll('#compilations .subsection-label'));
+  const wanted = { milestones: 'milestones', holidays: 'holidays', family: 'family' }[category] || category;
+  const label = labels.find(el => el.textContent.trim().toLowerCase() === wanted);
+  return label ? label.nextElementSibling : null;
+}
+
+function buildUploadCard(entry) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.embed = `https://player.mediadelivery.net/embed/636169/${entry.videoId}?autoplay=true&preload=true`;
+  card.dataset.dl = `https://vz-82cf94cd-f52.b-cdn.net/${entry.videoId}/play_720p.mp4`;
+  card.dataset.title = entry.title;
+
+  const infoBits = [entry.title];
+  if (entry.submittedBy) infoBits.push(`↑ ${entry.submittedBy}`);
+
+  card.innerHTML = `
+    <div class="card-thumb">
+      <img src="${entry.thumbnailUrl || `https://vz-82cf94cd-f52.b-cdn.net/${entry.videoId}/thumbnail.jpg`}" alt="" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-play">&#9654;</div>
+    </div>
+    <div class="card-info">
+      <span class="card-title">${entry.title}</span>
+      ${entry.year ? `<span class="card-year">${entry.year}</span>` : ''}
+    </div>
+  `;
+  return card;
+}
+
+function insertUploadedCard(entry, prepend = true) {
+  const grid = getCompilationGrid(entry.category);
+  if (!grid) return;
+  const card = buildUploadCard(entry);
+  if (prepend) grid.prepend(card);
+  else grid.appendChild(card);
+}
+
+async function loadCommunityUploads() {
+  try {
+    const res = await fetch(`${WORKER_URL}/uploads`);
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data.uploads || !Array.isArray(data.uploads)) return;
+
+    data.uploads
+      .slice()
+      .reverse()
+      .forEach(entry => insertUploadedCard(entry, true));
+  } catch (err) {
+    console.warn('Could not load community uploads', err);
+  }
+}
+
 function resetUploadForm() {
   document.getElementById('u-title').value = '';
   document.getElementById('u-year').value = '';
@@ -579,139 +621,10 @@ function resetUploadForm() {
   document.getElementById('upload-drop').classList.remove('has-file');
   document.getElementById('upload-error').textContent = '';
   document.getElementById('upload-progress-wrap').style.display = 'none';
-  document.getElementById('upload-progress-fill').style.width = '0%';
-  document.getElementById('upload-progress-label').textContent = 'Uploading…';
   document.getElementById('upload-form').style.display = 'block';
   document.getElementById('upload-success').style.display = 'none';
   document.getElementById('upload-submit').disabled = false;
   document.querySelectorAll('.cat-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
-}
-
-function escapeHtml(value) {
-  return String(value || '').replace(/[&<>"']/g, function(char) {
-    return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char];
-  });
-}
-
-function getCategoryGrid(category) {
-  return document.getElementById(`${category}-grid`);
-}
-
-function buildEmbedUrl(videoId) {
-  return `https://player.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${videoId}?autoplay=true&preload=true`;
-}
-
-function buildDownloadUrl(videoId) {
-  return `https://snowy-flower-fbec.hello-291.workers.dev/?url=https://${BUNNY_CDN_HOST}/${videoId}/play_720p.mp4&download=1`;
-}
-
-function buildThumbnailUrl(videoId, savedThumbnailUrl) {
-  return savedThumbnailUrl || `https://${BUNNY_CDN_HOST}/${videoId}/preview.webp`;
-}
-
-function createCommunityCard(upload) {
-  const card = document.createElement('div');
-  card.className = 'card';
-  card.dataset.embed = buildEmbedUrl(upload.videoId);
-  card.dataset.dl = buildDownloadUrl(upload.videoId);
-  card.dataset.title = upload.title || 'Untitled';
-  card.dataset.videoId = upload.videoId;
-  card.dataset.uploadSource = 'community';
-
-  const metaPieces = [];
-  if (upload.year) {
-    metaPieces.push(`<span class="card-year">${escapeHtml(upload.year)}</span>`);
-  }
-  if (upload.submittedBy) {
-    metaPieces.push(`<span class="card-uploaded-by">↑ ${escapeHtml(upload.submittedBy)}</span>`);
-  }
-
-  card.innerHTML = `
-    <div class="card-thumb">
-      <img src="${escapeHtml(buildThumbnailUrl(upload.videoId, upload.thumbnailUrl))}" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://${BUNNY_CDN_HOST}/${upload.videoId}/thumbnail.jpg'">
-      <div class="card-play">&#9654;</div>
-    </div>
-    <div class="card-info">
-      <span class="card-title">${escapeHtml(upload.title)}</span>
-      <span class="card-meta">${metaPieces.join('')}</span>
-    </div>
-  `;
-  return card;
-}
-
-function renderCommunityUpload(upload, prepend) {
-  if (!upload || !upload.videoId || !upload.category) return;
-  const grid = getCategoryGrid(upload.category);
-  if (!grid) return;
-  if (grid.querySelector(`[data-video-id="${CSS.escape(upload.videoId)}"]`)) return;
-  const card = createCommunityCard(upload);
-  if (prepend) grid.prepend(card);
-  else grid.appendChild(card);
-}
-
-async function loadCommunityUploads() {
-  if (communityUploadsLoaded) return;
-  try {
-    const res = await fetch(`${WORKER_URL}/uploads`, { cache: 'no-store' });
-    if (!res.ok) throw new Error('Could not load community uploads');
-    const data = await res.json();
-    (data.uploads || []).forEach(upload => renderCommunityUpload(upload, false));
-    communityUploadsLoaded = true;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-async function getUploadCredentials(title) {
-  const res = await fetch(`${WORKER_URL}/upload-url`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title })
-  });
-  if (!res.ok) {
-    throw new Error('Could not get upload credentials. Please try again.');
-  }
-  return res.json();
-}
-
-async function uploadFileWithTus(file, creds, progressFill, progressLabel) {
-  await new Promise((resolve, reject) => {
-    const upload = new tus.Upload(file, {
-      endpoint: creds.tusEndpoint || BUNNY_TUS_ENDPOINT,
-      retryDelays: [0, 3000, 5000, 10000, 20000],
-      headers: {
-        AuthorizationSignature: creds.signature,
-        AuthorizationExpire: String(creds.expirationTime),
-        VideoId: creds.videoId,
-        LibraryId: String(creds.libraryId),
-      },
-      metadata: {
-        filetype: file.type || 'video/mp4',
-        title: creds.title || file.name,
-      },
-      removeFingerprintOnSuccess: true,
-      onError: function(error) {
-        reject(new Error(error?.message || 'Upload failed. Check your connection and try again.'));
-      },
-      onProgress: function(bytesUploaded, bytesTotal) {
-        const pct = bytesTotal ? Math.round((bytesUploaded / bytesTotal) * 100) : 0;
-        progressFill.style.width = pct + '%';
-        progressLabel.textContent = `Uploading… ${pct}%`;
-      },
-      onSuccess: function() {
-        resolve();
-      },
-    });
-
-    upload.findPreviousUploads().then(function(previousUploads) {
-      if (previousUploads.length) {
-        upload.resumeFromPreviousUpload(previousUploads[0]);
-      }
-      upload.start();
-    }).catch(function() {
-      upload.start();
-    });
-  });
 }
 
 async function submitUpload() {
@@ -727,7 +640,6 @@ async function submitUpload() {
   if (!title)  { errEl.textContent = 'Please enter a video name.'; return; }
   if (!name)   { errEl.textContent = 'Please enter your name.'; return; }
   if (!file)   { errEl.textContent = 'Please choose a video file.'; return; }
-  if (typeof tus === 'undefined') { errEl.textContent = 'Upload library could not load. Refresh and try again.'; return; }
 
   const submitBtn = document.getElementById('upload-submit');
   submitBtn.disabled = true;
@@ -736,30 +648,58 @@ async function submitUpload() {
   const progressFill = document.getElementById('upload-progress-fill');
   const progressLabel = document.getElementById('upload-progress-label');
   progressWrap.style.display = 'block';
-  progressFill.style.width = '0%';
-  progressLabel.textContent = 'Preparing upload…';
+  progressLabel.textContent = 'Getting upload URL…';
 
   try {
-    const creds = await getUploadCredentials(title);
+    // Step 1: Get signed upload URL from Worker
+    const urlRes = await fetch(
+      `${WORKER_URL}/upload-url?title=${encodeURIComponent(title)}`
+    );
+    if (!urlRes.ok) throw new Error('Could not get upload URL. Please try again.');
+    const { videoId, uploadUrl } = await urlRes.json();
+
+    // Step 2: Upload video file directly to Bunny via XHR (for progress)
     progressLabel.textContent = 'Uploading video…';
-    await uploadFileWithTus(file, creds, progressFill, progressLabel);
+    await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('PUT', uploadUrl);
+      xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+
+      xhr.upload.addEventListener('progress', (e) => {
+        if (e.lengthComputable) {
+          const pct = Math.round((e.loaded / e.total) * 100);
+          progressFill.style.width = pct + '%';
+          progressLabel.textContent = `Uploading… ${pct}%`;
+        }
+      });
+
+      xhr.addEventListener('load', () => {
+        if (xhr.status >= 200 && xhr.status < 300) resolve();
+        else reject(new Error(`Upload failed (${xhr.status})`));
+      });
+      xhr.addEventListener('error', () => reject(new Error('Upload failed. Check your connection.')));
+      xhr.send(file);
+    });
 
     progressFill.style.width = '100%';
     progressLabel.textContent = 'Saving…';
 
+    // Step 3: Save metadata to KV via Worker
     const saveRes = await fetch(`${WORKER_URL}/save-video`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ videoId: creds.videoId, title, year, submittedBy: name, category: cat }),
+      body: JSON.stringify({ videoId, title, year, submittedBy: name, category: cat }),
     });
     if (!saveRes.ok) throw new Error('Video uploaded but could not save details. Contact Stevie.');
-
     const saveData = await saveRes.json();
-    renderCommunityUpload(saveData.entry, true);
+    if (saveData && saveData.entry) insertUploadedCard(saveData.entry);
 
+    // Step 4: Show success
     document.getElementById('upload-form').style.display = 'none';
     document.getElementById('upload-success').style.display = 'block';
-    document.getElementById('success-cat').textContent = categoryLabels[cat] || cat;
+    const catLabels = { milestones: 'Milestones', holidays: 'Holidays', family: 'Family' };
+    document.getElementById('success-cat').textContent = catLabels[cat] || cat;
+
   } catch (err) {
     errEl.textContent = err.message;
     submitBtn.disabled = false;
@@ -767,7 +707,7 @@ async function submitUpload() {
   }
 }
 
-loadCommunityUploads();
-</script></script>
+document.addEventListener('DOMContentLoaded', loadCommunityUploads);
+</script>
 </body>
 </html>
