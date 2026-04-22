@@ -11,7 +11,7 @@
   <style>
     :root { --teal: #00B6C0; --blue: #1F7BCC; --text: #1a1a1a; --muted-bg: #e5e5e5; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { background: #fff; color: var(--text); font-family: "Work Sans", sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+    html, body { background: #0b1d26; color: #fff; font-family: "Work Sans", sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
 
     /* ── STICKY NAV ── slides in when hero scrolls out */
     .sticky-nav {
@@ -37,78 +37,85 @@
     /* ── SHARED BUTTONS ── */
     .shortcut-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 9px 18px; background: #1F7BCC;
-      color: #fff; border: none; border-radius: 6px;
+      padding: 9px 18px; background: transparent;
+      color: #fff; border: 1px solid rgba(255,255,255,0.62); border-radius: 999px;
       font-family: "Work Sans", sans-serif; font-size: 13px; font-weight: 500;
-      cursor: pointer; text-decoration: none; transition: background 0.15s; white-space: nowrap;
+      cursor: pointer; text-decoration: none; transition: background 0.18s, border-color 0.18s, transform 0.18s, color 0.18s; white-space: nowrap;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
     }
-    .shortcut-btn:hover { background: #1868b0; }
+    .shortcut-btn:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+    .shortcut-btn.active,
+    .shortcut-btn[aria-current="page"] { background: #1F7BCC; border-color: #1F7BCC; color: #fff; }
 
     .upload-btn {
-      display: inline-flex; align-items: center; gap: 7px; margin-left: auto;
+      display: inline-flex; align-items: center; gap: 7px; margin-left: 0;
       padding: 9px 16px; background: #56fff0; color: #1F7BCC; border: none;
       border-radius: 999px; font-family: "Work Sans", sans-serif; font-size: 13px; font-weight: 700;
       cursor: pointer; transition: background 0.15s, transform 0.15s, opacity 0.15s; white-space: nowrap;
+      position: relative; overflow: hidden;
     }
     .upload-btn:hover { background: #38f2e1; transform: translateY(-1px); }
+    .upload-btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.58), rgba(255,255,255,0.24), transparent 100%);
+      transform: skewX(-20deg);
+      animation: sheen 4s infinite;
+      pointer-events: none;
+    }
+    @keyframes sheen {
+      0% { left: -120%; }
+      50% { left: 120%; }
+      100% { left: 120%; }
+    }
 
 
     /* ── CATALOGUE ── */
-    .catalogue { padding: 64px 5% 120px; }
+    .catalogue { padding: 64px 5% 120px; background: #0b1d26; }
     .cat-section { margin-bottom: 96px; scroll-margin-top: 80px; }
     .cat-label {
       font-family: "Libre Baskerville", serif;
       font-size: 52px; font-weight: 400; font-style: normal;
-      color: #1F7BCC; letter-spacing: -0.03em;
-      padding-bottom: 10px; border-bottom: 0.75px solid #1F7BCC;
+      color: #fff; letter-spacing: -0.03em;
+      padding-bottom: 10px; border-bottom: 0.75px solid rgba(255,255,255,0.18);
       margin-bottom: 20px; display: block; line-height: 1.05;
     }
     .decade-group { margin-bottom: 36px; }
     .decade-label {
       display: block; font-family: "Work Sans", sans-serif;
-      font-size: 18px; font-weight: 400; color: #1F7BCC;
+      font-size: 18px; font-weight: 400; color: rgba(255,255,255,0.72);
       margin-bottom: 14px;
     }
 
     #compilations { margin-bottom: 96px; scroll-margin-top: 80px; }
     #compilations > h2 {
       font-family: "Libre Baskerville", serif;
-      font-size: 52px; font-weight: 400; color: var(--blue); letter-spacing: -0.03em;
-      padding-bottom: 10px; border-bottom: 0.75px solid var(--blue); margin-bottom: 20px; line-height: 1.05;
+      font-size: 52px; font-weight: 400; color: #fff; letter-spacing: -0.03em;
+      padding-bottom: 10px; border-bottom: 0.75px solid rgba(255,255,255,0.18); margin-bottom: 20px; line-height: 1.05;
     }
     .subsection-label {
-      display: block; font-family: "Work Sans", sans-serif; font-size: 18px; font-weight: 500; color: var(--blue);
+      display: block; font-family: "Work Sans", sans-serif; font-size: 18px; font-weight: 500; color: rgba(255,255,255,0.82);
       margin: 28px 0 14px;
-    }
-
-    .section-intro {
-      font-size: 14px;
-      line-height: 1.5;
-      color: rgba(31,123,204,0.78);
-      margin: -6px 0 18px;
-      max-width: 420px;
-    }
-    .subcategory-copy {
-      font-size: 13px;
-      line-height: 1.45;
-      color: rgba(31,123,204,0.78);
-      margin: -8px 0 14px;
     }
     .card-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 
     /* ── CARDS 4:3 ── */
     .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .card { cursor: pointer; border-radius: 8px; overflow: hidden; background: #e5e5e5; transition: transform 0.18s, box-shadow 0.18s; -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
-    .card-thumb { width: 100%; aspect-ratio: 4/3; background: #e5e5e5; position: relative; overflow: hidden; pointer-events: none; }
+    .card { cursor: pointer; border-radius: 10px; overflow: hidden; background: #13232d; transition: transform 0.18s, box-shadow 0.18s; -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none; -webkit-user-select: none; box-shadow: 0 0 0 1px rgba(255,255,255,0.05); }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.42); }
+    .card-thumb { width: 100%; aspect-ratio: 4/3; background: #13232d; position: relative; overflow: hidden; pointer-events: none; }
     .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
     .card:hover .card-thumb img { transform: scale(1.04); }
     .card-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,182,192,0.7); color: #fff; font-size: 22px; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
     .card:hover .card-play { opacity: 1; }
-    .card-info { padding: 9px 10px 11px; display: flex; align-items: baseline; justify-content: space-between; gap: 6px; background: #e5e5e5; pointer-events: none; }
-    .card-title { font-size: 13px; font-weight: 400; color: #444; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color 0.15s; }
-    .card:hover .card-title { color: #111; }
-    .card-year { font-size: 11px; color: #1F7BCC; white-space: nowrap; flex-shrink: 0; font-weight: 600; }
+    .card-info { padding: 9px 10px 11px; display: flex; align-items: baseline; justify-content: space-between; gap: 6px; background: #13232d; pointer-events: none; }
+    .card-title { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.82); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color 0.15s; }
+    .card:hover .card-title { color: #fff; }
+    .card-year { font-size: 11px; color: #56fff0; white-space: nowrap; flex-shrink: 0; font-weight: 600; }
     .card-meta { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
     .card-uploaded-by { font-size: 10px; color: rgba(31,123,204,0.9); white-space: nowrap; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
 
@@ -262,7 +269,6 @@
       .cat-label { font-size: 36px; }
       #compilations > h2 { font-size: 36px; }
       .decade-label { font-size: 15px; }
-      .section-intro, .subcategory-copy { font-size: 12px; }
       .card-grid, .card-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
       .cat-section { margin-bottom: 56px; }
       html, body { max-width: 100%; overflow-x: hidden; }
@@ -286,11 +292,10 @@
 <path d="M1.29294 95.0851V0H46.4584C53.5017 0 59.5326 1.23258 64.551 3.69775C69.6574 6.16292 73.5752 9.59655 76.3045 13.9986C79.1219 18.4007 80.5306 23.5512 80.5306 29.45C80.5306 35.3488 79.1219 40.5432 76.3045 45.0334C73.4872 49.5235 69.5253 53.0452 64.4189 55.5984C59.4005 58.0636 53.4137 59.2961 46.4584 59.2961H17.4046V43.7128H45.4019C50.0681 43.7128 53.6778 42.4361 56.231 39.8829C58.8722 37.2417 60.1929 33.8081 60.1929 29.582C60.1929 25.356 58.8722 21.9664 56.231 19.4132C53.6778 16.86 50.0681 15.5834 45.4019 15.5834H21.6306V95.0851H1.29294Z" fill="white"/>
 <path d="M117.564 26.56C125.048 26.56 131.563 28.0131 137.109 30.9184C142.744 33.8237 147.102 37.8734 150.184 43.0678C153.265 48.2622 154.806 54.3372 154.806 61.2924C154.806 68.2477 153.221 74.4112 150.052 79.7817C146.97 85.064 142.612 89.2014 136.978 92.1948C131.431 95.1001 124.96 96.5531 117.564 96.5532C110.169 96.5532 103.653 95.1001 98.0185 92.1948C92.4722 89.2014 88.1137 85.064 84.9443 79.7817C81.8629 74.4112 80.3222 68.2477 80.3222 61.2924C80.3223 54.3373 81.8629 48.2622 84.9443 43.0678C88.1137 37.8735 92.4721 33.8237 98.0185 30.9184C103.653 28.013 110.169 26.56 117.564 26.56ZM108.968 41.4614C107.244 40.4661 105.089 41.71 105.089 43.7006V79.5317C105.089 81.5221 107.244 82.7662 108.968 81.7709L139.998 63.8549C141.722 62.8595 141.722 60.3717 139.998 59.3764L108.968 41.4614Z" fill="white"/>
 </svg></a>
-  <div class="sticky-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span>Video Memories</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a></div>
-  <button type="button" class="upload-btn" onclick="openUploadModal()">
+  <div class="sticky-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span>Video Memories</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a><button type="button" class="upload-btn" onclick="openUploadModal()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <span>Upload Video</span>
-    </button>
+    </button></div>
   </nav>
 
 <div id="lightbox">
@@ -324,10 +329,8 @@
 <div class="catalogue">
   <section id="compilations">
   <h2>Video Memories</h2>
-  <p class="section-intro">A collection of longer edits, thoughtfully put together.</p>
 
 <h3 class="subsection-label">Milestones</h3>
-  <p class="subcategory-copy">Big life moments</p>
   <div class="card-grid" id="milestones-grid">
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/31ac2ff5-a099-48f8-b37f-0f4cf2250e0d?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/31ac2ff5-a099-48f8-b37f-0f4cf2250e0d/play_720p.mp4&download=1" data-title="Roger's 60th"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/31ac2ff5-a099-48f8-b37f-0f4cf2250e0d/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">Roger's 60th</span></div></div>
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/d9aee0fc-d051-493a-a23c-bf54baa0fee3?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/d9aee0fc-d051-493a-a23c-bf54baa0fee3/play_720p.mp4&download=1" data-title="Julie's 60th"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/d9aee0fc-d051-493a-a23c-bf54baa0fee3/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">Julie's 60th</span></div></div>
@@ -344,7 +347,6 @@
   </div>
 
   <h3 class="subsection-label">Holidays</h3>
-  <p class="subcategory-copy">Trips and time away</p>
   <div class="card-grid" id="holidays-grid">
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/8a943322-ada9-4699-9477-356b1acd6b26?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/8a943322-ada9-4699-9477-356b1acd6b26/play_720p.mp4&download=1" data-title="NY 2019"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/8a943322-ada9-4699-9477-356b1acd6b26/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">NY 2019</span></div></div>
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/b9144833-f841-4551-a2dd-374c118e6b2b?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/b9144833-f841-4551-a2dd-374c118e6b2b/play_720p.mp4&download=1" data-title="Stevie & Ant USA"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/b9144833-f841-4551-a2dd-374c118e6b2b/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">Stevie & Ant USA</span></div></div>
@@ -353,7 +355,6 @@
   </div>
 
   <h3 class="subsection-label">Family</h3>
-  <p class="subcategory-copy">Time spent together</p>
   <div class="card-grid" id="family-grid">
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/c97f8cc7-9a9a-4422-8fcf-bb8e76fcdfec?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/c97f8cc7-9a9a-4422-8fcf-bb8e76fcdfec/play_720p.mp4&download=1" data-title="PoppyTV Film"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/c97f8cc7-9a9a-4422-8fcf-bb8e76fcdfec/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">PoppyTV Film</span></div></div>
     <div class="card" data-embed="https://player.mediadelivery.net/embed/636169/aa95f6b8-5047-4a14-bb8f-7556a64cf222?autoplay=true&preload=true" data-dl="https://snowy-flower-fbec.hello-291.workers.dev/?url=https://vz-82cf94cd-f52.b-cdn.net/aa95f6b8-5047-4a14-bb8f-7556a64cf222/play_720p.mp4&download=1" data-title="Remember"><div class="card-thumb"><img src="https://vz-82cf94cd-f52.b-cdn.net/aa95f6b8-5047-4a14-bb8f-7556a64cf222/preview.webp" alt="" loading="lazy" onerror="this.style.display='none'"><div class="card-play">&#9654;</div></div><div class="card-info"><span class="card-title">Remember</span></div></div>
