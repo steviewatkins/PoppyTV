@@ -34,44 +34,37 @@
     .hero-sub { font-family: "Libre Baskerville", serif; font-style: italic; font-size: 20px; color: rgba(255,255,255,0.92); margin-bottom: 18px; }
     .hero-shortcuts { display: flex; gap: 8px; flex-wrap: wrap; }
 
+    .sticky-shortcuts .upload-btn,
+    .hero-shortcuts .upload-btn {
+      margin-left: 0;
+      flex-shrink: 0;
+    }
+
     /* ── SHARED BUTTONS ── */
     .shortcut-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 9px 18px; background: #1F7BCC;
-      color: #fff; border: none; border-radius: 6px;
-      font-family: "Work Sans", sans-serif; font-size: 13px; font-weight: 500;
-      cursor: pointer; text-decoration: none; transition: background 0.15s; white-space: nowrap;
+      padding: 9px 18px; background: transparent;
+      color: #fff; border: 1px solid rgba(255,255,255,0.72); border-radius: 999px;
+      font-family: "Work Sans", sans-serif; font-size: 13px; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: background 0.15s, border-color 0.15s, color 0.15s; white-space: nowrap;
     }
-    .shortcut-btn:hover { background: #1868b0; }
+    .shortcut-btn:hover,
+    .shortcut-btn:active,
+    .shortcut-btn.active {
+      background: #1F7BCC;
+      border-color: #1F7BCC;
+      color: #fff;
+    }
 
     .upload-btn {
-      display: inline-flex; align-items: center; gap: 7px; margin-left: auto;
+      display: inline-flex; align-items: center; gap: 7px;
       padding: 9px 16px; background: #56fff0; color: #1F7BCC; border: none;
       border-radius: 999px; font-family: "Work Sans", sans-serif; font-size: 13px; font-weight: 700;
       cursor: pointer; transition: background 0.15s, transform 0.15s, opacity 0.15s; white-space: nowrap;
     }
     .upload-btn:hover { background: #38f2e1; transform: translateY(-1px); }
-    .upload-btn {
-      position: relative;
-      overflow: hidden;
-    }
-    .upload-btn::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -120%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.35), transparent 100%);
-      transform: skewX(-20deg);
-      animation: sheen 5.5s infinite;
-      pointer-events: none;
-    }
-    @keyframes sheen {
-      0% { left: -120%; }
-      55% { left: 120%; }
-      100% { left: 120%; }
-    }
+
+    .card-uploaded-by { display: none !important; }
 
 
     /* ── CATALOGUE ── */
@@ -160,29 +153,6 @@
       color: #fff;
       border-color: rgba(255,120,120,0.7);
     }
-    #lightbox-edit {
-      display: none;
-      margin: 40px 10px 0 auto;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.88);
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-family: "Work Sans", sans-serif;
-      font-size: 12px;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-    }
-    #lightbox-edit:hover {
-      background: rgba(255,255,255,0.16);
-      color: #fff;
-      border-color: rgba(255,255,255,0.34);
-    }
-    .lightbox-bottom-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-    }
 
     .delete-confirm-overlay {
       display: none;
@@ -246,87 +216,6 @@
       color: #fff;
     }
 
-    .details-edit-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.78);
-      z-index: 1200;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .details-edit-overlay.active { display: flex; }
-    .details-edit-modal {
-      width: 100%;
-      max-width: 460px;
-      background: #10202f;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.55);
-      padding: 24px 22px 20px;
-      color: #fff;
-    }
-    .details-edit-title {
-      font-family: "Libre Baskerville", serif;
-      font-size: 22px;
-      color: rgba(255,255,255,0.92);
-      margin-bottom: 8px;
-    }
-    .details-edit-copy {
-      font-size: 14px;
-      line-height: 1.45;
-      color: rgba(255,255,255,0.72);
-      margin-bottom: 18px;
-    }
-    .details-edit-field { margin-bottom: 14px; }
-    .details-edit-field label {
-      display: block;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-    .details-edit-field input {
-      width: 100%;
-      box-sizing: border-box;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 10px;
-      color: #fff;
-      padding: 11px 12px;
-      font-family: "Work Sans", sans-serif;
-      font-size: 14px;
-      outline: none;
-    }
-    .details-edit-field input:focus { border-color: rgba(86,255,240,0.8); }
-    .details-edit-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-      margin-top: 18px;
-    }
-    .details-edit-cancel,
-    .details-edit-save {
-      border-radius: 999px;
-      padding: 9px 14px;
-      font-family: "Work Sans", sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-    }
-    .details-edit-cancel {
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-    }
-    .details-edit-save {
-      background: #56fff0;
-      color: #1F7BCC;
-    }
-
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
@@ -363,8 +252,7 @@
 
       .card-uploaded-by { display: none; }
       #lightbox-meta { display: block; }
-      #lightbox-delete, #lightbox-edit { width: auto; margin-top: 34px; }
-      .lightbox-bottom-actions { width: 100%; justify-content: flex-end; }
+      #lightbox-delete { width: auto; margin-top: 34px; }
       .sticky-logo { height: 26px; }
       .hero { padding: 32px 16px 32px; }
       .logo-svg { width: 65%; }
@@ -397,11 +285,7 @@
 <path d="M1.29294 95.0851V0H46.4584C53.5017 0 59.5326 1.23258 64.551 3.69775C69.6574 6.16292 73.5752 9.59655 76.3045 13.9986C79.1219 18.4007 80.5306 23.5512 80.5306 29.45C80.5306 35.3488 79.1219 40.5432 76.3045 45.0334C73.4872 49.5235 69.5253 53.0452 64.4189 55.5984C59.4005 58.0636 53.4137 59.2961 46.4584 59.2961H17.4046V43.7128H45.4019C50.0681 43.7128 53.6778 42.4361 56.231 39.8829C58.8722 37.2417 60.1929 33.8081 60.1929 29.582C60.1929 25.356 58.8722 21.9664 56.231 19.4132C53.6778 16.86 50.0681 15.5834 45.4019 15.5834H21.6306V95.0851H1.29294Z" fill="white"/>
 <path d="M117.564 26.56C125.048 26.56 131.563 28.0131 137.109 30.9184C142.744 33.8237 147.102 37.8734 150.184 43.0678C153.265 48.2622 154.806 54.3372 154.806 61.2924C154.806 68.2477 153.221 74.4112 150.052 79.7817C146.97 85.064 142.612 89.2014 136.978 92.1948C131.431 95.1001 124.96 96.5531 117.564 96.5532C110.169 96.5532 103.653 95.1001 98.0185 92.1948C92.4722 89.2014 88.1137 85.064 84.9443 79.7817C81.8629 74.4112 80.3222 68.2477 80.3222 61.2924C80.3223 54.3373 81.8629 48.2622 84.9443 43.0678C88.1137 37.8735 92.4721 33.8237 98.0185 30.9184C103.653 28.013 110.169 26.56 117.564 26.56ZM108.968 41.4614C107.244 40.4661 105.089 41.71 105.089 43.7006V79.5317C105.089 81.5221 107.244 82.7662 108.968 81.7709L139.998 63.8549C141.722 62.8595 141.722 60.3717 139.998 59.3764L108.968 41.4614Z" fill="white"/>
 </svg></a>
-  <div class="sticky-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span>Compilations</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a></div>
-  <button type="button" class="upload-btn" onclick="openUploadModal()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-      <span>Upload Video</span>
-    </button>
+  <div class="sticky-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span>Compilations</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a><button type="button" class="upload-btn" onclick="openUploadModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Upload Video</span></button></div>
   </nav>
 
 <div id="lightbox">
@@ -414,7 +298,7 @@
         <button type="button" id="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
       </div>
     </div>
-    <div class="lightbox-bottom-actions"><button type="button" id="lightbox-edit" onclick="openEditDetails()" style="display:none">Update details</button><button type="button" id="lightbox-delete" onclick="openDeleteConfirm()" style="display:none">Delete video</button></div>
+    <button type="button" id="lightbox-delete" onclick="openDeleteConfirm()" style="display:none">Delete video</button>
   </div>
 </div>
 
@@ -501,21 +385,15 @@ function updateLightboxMeta(details) {
   if (details.uploadedBy) parts.push('Uploaded by ' + details.uploadedBy);
   document.getElementById('lightbox-meta').textContent = parts.join(' • ');
   var deleteBtn = document.getElementById('lightbox-delete');
-  var editBtn = document.getElementById('lightbox-edit');
   if (details.source === 'community' && details.videoId) {
     deleteBtn.style.display = 'block';
-    editBtn.style.display = 'block';
   } else {
     deleteBtn.style.display = 'none';
-    editBtn.style.display = 'none';
   }
   currentLightbox = {
     videoId: details.videoId || '',
     source: details.source || '',
-    category: details.category || '',
-    title: details.title || document.getElementById('lightbox-title').textContent || '',
-    uploadedBy: details.uploadedBy || '',
-    year: details.year || ''
+    category: details.category || ''
   };
 }
 function openVideo(e, d, t, details) {
@@ -526,107 +404,11 @@ function openVideo(e, d, t, details) {
   document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
-
-function openEditDetails() {
-  if (!currentLightbox.videoId || currentLightbox.source !== 'community') return;
-  document.getElementById('edit-title').value = currentLightbox.title || '';
-  document.getElementById('edit-year').value = currentLightbox.year || '';
-  document.getElementById('edit-submitted-by').value = currentLightbox.uploadedBy || '';
-  document.getElementById('details-edit-overlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeEditDetails() {
-  document.getElementById('details-edit-overlay').classList.remove('active');
-  document.body.style.overflow = document.getElementById('lightbox').classList.contains('active') ? 'hidden' : '';
-}
-function handleEditOverlayClick(event) {
-  if (event.target === document.getElementById('details-edit-overlay')) closeEditDetails();
-}
-async function saveEditDetails() {
-  if (!currentLightbox.videoId || currentLightbox.source !== 'community') return;
-  var title = document.getElementById('edit-title').value.trim();
-  var year = document.getElementById('edit-year').value.trim();
-  var submittedBy = document.getElementById('edit-submitted-by').value.trim();
-  if (!title) {
-    window.alert('Please add a title.');
-    return;
-  }
-  var saveBtn = document.getElementById('details-edit-save');
-  var oldLabel = saveBtn.textContent;
-  saveBtn.disabled = true;
-  saveBtn.textContent = 'Saving…';
-  try {
-    var res = await fetch(`${WORKER_URL}/save-video`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        videoId: currentLightbox.videoId,
-        title,
-        year,
-        submittedBy,
-        category: currentLightbox.category
-      })
-    });
-    var data = await res.json().catch(function(){ return {}; });
-    if (!res.ok) throw new Error(data.error || 'Could not update details.');
-    var card = document.querySelector(`[data-video-id="${CSS.escape(currentLightbox.videoId)}"]`);
-    if (card) {
-      card.dataset.title = title;
-      card.dataset.sortyear = year || '';
-      card.dataset.uploadedBy = submittedBy || '';
-      card.dataset.category = currentLightbox.category || '';
-      var titleEl = card.querySelector('.card-title');
-      if (titleEl) titleEl.textContent = title;
-      var meta = card.querySelector('.card-meta');
-      if (meta) {
-        meta.innerHTML = '';
-        if (year) {
-          var yearSpan = document.createElement('span');
-          yearSpan.className = 'card-year';
-          yearSpan.textContent = year;
-          meta.appendChild(yearSpan);
-        }
-        if (submittedBy) {
-          var bySpan = document.createElement('span');
-          bySpan.className = 'card-uploaded-by';
-          bySpan.textContent = '↑ ' + submittedBy;
-          meta.appendChild(bySpan);
-        }
-      }
-      card.onclick = function() {
-        openVideo(card.dataset.embed, card.dataset.dl, card.dataset.title, {
-          videoId: card.dataset.videoId || '',
-          source: card.dataset.uploadSource || 'original',
-          uploadedBy: card.dataset.uploadedBy || '',
-          year: card.dataset.sortyear || '',
-          category: card.dataset.category || ''
-        });
-      };
-    }
-    updateLightboxMeta({
-      videoId: currentLightbox.videoId,
-      source: currentLightbox.source,
-      category: currentLightbox.category,
-      title,
-      uploadedBy: submittedBy,
-      year
-    });
-    document.getElementById('lightbox-title').textContent = title;
-    sortCategoryGrid(currentLightbox.category);
-    closeEditDetails();
-  } catch (err) {
-    window.alert(err.message || 'Could not update details.');
-  } finally {
-    saveBtn.disabled = false;
-    saveBtn.textContent = oldLabel;
-  }
-}
-
 var deleteConfirmStep = 0;
 function openDeleteConfirm() {
   if (!currentLightbox.videoId || currentLightbox.source !== 'community') return;
   deleteConfirmStep = 1;
-  document.getElementById('delete-confirm-title').textContent = 'Delete this video?';
+  document.getElementById('delete-confirm-title').textContent = '🚨 Delete this video?';
   document.getElementById('delete-confirm-copy').textContent = 'Are you sure you want to delete this video?';
   document.getElementById('delete-confirm-confirm').textContent = 'Yes, delete it';
   document.getElementById('delete-confirm-overlay').classList.add('active');
@@ -642,7 +424,7 @@ function handleDeleteOverlayClick(event) {
 async function handleDeleteConfirm() {
   if (deleteConfirmStep === 1) {
     deleteConfirmStep = 2;
-    document.getElementById('delete-confirm-title').textContent = 'But.. are you reallllly sure?';
+    document.getElementById('delete-confirm-title').textContent = '🚨 But.. are you reallllly sure?';
     document.getElementById('delete-confirm-copy').textContent = 'This will permanently remove the uploaded video from the archive.';
     document.getElementById('delete-confirm-confirm').textContent = 'Yes, I am sure';
     return;
@@ -693,7 +475,6 @@ function closeLightbox() {
   document.getElementById('lightbox-iframe').src = '';
   document.getElementById('lightbox-meta').textContent = '';
   document.getElementById('lightbox-delete').style.display = 'none';
-  document.getElementById('lightbox-edit').style.display = 'none';
   currentLightbox = { videoId: '', source: '', category: '' };
   document.body.style.overflow = '';
 }
@@ -759,7 +540,7 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
     <div id="upload-success" style="display:none" class="upload-success-state">
       <div class="upload-success-icon" id="upload-success-icon">✓</div>
       <h3>Video uploaded!</h3>
-      <p>It’s in the <strong id="success-cat"></strong> section now. You may need to refresh the page.</p>
+      <p>It’s in the <strong id="success-cat"></strong> section now.</p>
       <button type="button" class="upload-submit" onclick="closeUploadModal()">Done</button>
     </div>
   </div>
@@ -1283,16 +1064,16 @@ async function submitUpload() {
   const progressLabel = document.getElementById('upload-progress-label');
   progressWrap.style.display = 'block';
   progressFill.style.width = '0%';
-  progressLabel.textContent = 'Preparing upload… This may take a minute.';
+  progressLabel.textContent = 'Preparing upload…';
   mountUploadLottie();
 
   try {
     const creds = await getUploadCredentials(title);
-    progressLabel.textContent = 'Uploading video… This may take a minute.';
+    progressLabel.textContent = 'Uploading video…';
     await uploadFileWithTus(file, creds, progressFill, progressLabel);
 
     progressFill.style.width = '100%';
-    progressLabel.textContent = 'Finalising upload… This may take a minute.';
+    progressLabel.textContent = 'Saving…';
 
     const saveRes = await fetch(`${WORKER_URL}/save-video`, {
       method: 'POST',
@@ -1317,31 +1098,23 @@ async function submitUpload() {
 
 decorateCompilationCards();
 loadCommunityUploads();
+
+function syncShortcutState(targetHash) {
+  document.querySelectorAll('.shortcut-btn[href^="#"]').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('href') === targetHash);
+  });
+}
+document.querySelectorAll('.shortcut-btn[href^="#"]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    syncShortcutState(this.getAttribute('href'));
+  });
+});
+window.addEventListener('hashchange', function() {
+  syncShortcutState(window.location.hash || '#compilations');
+});
+syncShortcutState(window.location.hash || '#compilations');
+
 </script>
-
-
-<div id="details-edit-overlay" class="details-edit-overlay" onclick="handleEditOverlayClick(event)">
-  <div class="details-edit-modal">
-    <div class="details-edit-title">Update video details</div>
-    <div class="details-edit-copy">You can update the title, year and who it was submitted by for community uploads.</div>
-    <div class="details-edit-field">
-      <label for="edit-title">Title</label>
-      <input id="edit-title" type="text" autocomplete="off">
-    </div>
-    <div class="details-edit-field">
-      <label for="edit-year">Year</label>
-      <input id="edit-year" type="number" min="1950" max="2099">
-    </div>
-    <div class="details-edit-field">
-      <label for="edit-submitted-by">Submitted by</label>
-      <input id="edit-submitted-by" type="text" autocomplete="off">
-    </div>
-    <div class="details-edit-actions">
-      <button type="button" class="details-edit-cancel" onclick="closeEditDetails()">Cancel</button>
-      <button type="button" class="details-edit-save" id="details-edit-save" onclick="saveEditDetails()">Save details</button>
-    </div>
-  </div>
-</div>
 
 <div id="delete-confirm-overlay" class="delete-confirm-overlay" onclick="handleDeleteOverlayClick(event)">
   <div class="delete-confirm-modal">
