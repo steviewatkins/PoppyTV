@@ -365,7 +365,7 @@ if (catalogueEl) catalogueEl.addEventListener('click', function(e) {
     videoId: card.dataset.videoId || '',
     source: card.dataset.uploadSource || 'original',
     uploadedBy: card.dataset.uploadedBy || '',
-    year: getCardYear(card),
+    year: card.dataset.sortyear || '',
     category: card.dataset.category || ''
   });
 });
@@ -386,44 +386,22 @@ function updateLightboxMeta(details) {
     category: details.category || ''
   };
 }
-
-function extractVideoIdFromEmbedUrl(embedUrl) {
-  if (!embedUrl) return '';
-  var match = String(embedUrl).match(/\/embed\/\d+\/([a-f0-9-]+)/i);
-  return match ? match[1] : '';
-}
-function getCardYear(card) {
-  if (!card) return '';
-  return card.dataset.sortyear || (card.querySelector('.card-year') ? card.querySelector('.card-year').textContent.trim() : '');
-}
-function buildDownloadHref(videoId, title, year) {
-  if (!videoId) return '#';
-  var params = new URLSearchParams({
-    videoId: videoId,
-    title: title || 'PoppyTV Video'
-  });
-  if (year) params.set('year', year);
-  return `${WORKER_URL}/download?${params.toString()}`;
-}
 function openVideo(e, d, t, details) {
-  var info = details || {};
-  var resolvedVideoId = info.videoId || extractVideoIdFromEmbedUrl(e);
-  var resolvedYear = info.year || '';
+  const info = details || {};
+  const resolvedVideoId = info.videoId || extractVideoIdFromEmbedUrl(e);
+  const downloadHref = resolvedVideoId ? buildDownloadUrl(resolvedVideoId, t || '', info.year || '') : (d || '#');
+  const downloadEl = document.getElementById('lightbox-download');
 
   document.getElementById('lightbox-iframe').src = e;
-
-  var downloadLink = document.getElementById('lightbox-download');
-  downloadLink.href = buildDownloadHref(resolvedVideoId, t || '', resolvedYear);
-  downloadLink.setAttribute('target', '_blank');
-  downloadLink.setAttribute('rel', 'noopener');
-  downloadLink.removeAttribute('download');
-
+  downloadEl.href = downloadHref;
+  downloadEl.setAttribute('target', '_blank');
+  downloadEl.setAttribute('rel', 'noopener');
   document.getElementById('lightbox-title').textContent = t || '';
   updateLightboxMeta({
     videoId: resolvedVideoId,
     source: info.source || '',
     uploadedBy: info.uploadedBy || '',
-    year: resolvedYear,
+    year: info.year || '',
     category: info.category || ''
   });
   document.getElementById('lightbox').classList.add('active');
@@ -948,8 +926,19 @@ function buildEmbedUrl(videoId) {
   return `https://player.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${videoId}?autoplay=true&preload=true`;
 }
 
-function buildDownloadUrl(videoId) {
-  return `https://snowy-flower-fbec.hello-291.workers.dev/?url=https://${BUNNY_CDN_HOST}/${videoId}/play_720p.mp4&download=1`;
+function extractVideoIdFromEmbedUrl(embedUrl) {
+  const match = String(embedUrl || '').match(/\/embed\/\d+\/([a-f0-9-]+)/i);
+  return match ? match[1] : '';
+}
+
+function buildDownloadUrl(videoId, title, year) {
+  if (!videoId) return '#';
+  const params = new URLSearchParams({
+    videoId: videoId,
+    title: title || 'PoppyTV Video'
+  });
+  if (year) params.set('year', String(year));
+  return `${WORKER_URL}/download?${params.toString()}`;
 }
 
 function buildThumbnailUrl(videoId, savedThumbnailUrl) {
@@ -960,7 +949,7 @@ function createCommunityCard(upload) {
   const card = document.createElement('div');
   card.className = 'card';
   card.dataset.embed = buildEmbedUrl(upload.videoId);
-  card.dataset.dl = buildDownloadUrl(upload.videoId);
+  card.dataset.dl = buildDownloadUrl(upload.videoId, upload.title || 'Untitled', upload.year || '');
   card.dataset.title = upload.title || 'Untitled';
   card.dataset.videoId = upload.videoId;
   card.dataset.uploadSource = 'community';
