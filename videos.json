@@ -25,6 +25,7 @@
         { "id": "8a943322", "title": "NY 2019", "year": "2019", "videoId": "8a943322-ada9-4699-9477-356b1acd6b26" },
         { "id": "b9144833", "title": "Stevie & Ant USA", "year": "2017", "videoId": "b9144833-f841-4551-a2dd-374c118e6b2b" },
         { "id": "357b19fd", "title": "Down South", "year": "2006", "videoId": "357b19fd-9d73-4402-8795-518c5509a073" },
+        { "id": "aa95f6b8", "title": "Remember", "year": "2004", "videoId": "aa95f6b8-5047-4a14-bb8f-7556a64cf222" },
         { "id": "9c83134f", "title": "Darwin", "year": "2004", "videoId": "9c83134f-c195-4824-b517-ce0f03b6786b" }
       ]
     },
@@ -32,19 +33,32 @@
       "id": "family",
       "title": "Family",
       "items": [
-        { "id": "c97f8cc7", "title": "PoppyTV Film", "year": "2017", "videoId": "c97f8cc7-9a9a-4422-8fcf-bb8e76fcdfec" },
-        { "id": "aa95f6b8", "title": "Remember", "year": "2004", "videoId": "aa95f6b8-5047-4a14-bb8f-7556a64cf222" }
+        { "id": "c97f8cc7", "title": "PoppyTV Film", "year": "2017", "videoId": "c97f8cc7-9a9a-4422-8fcf-bb8e76fcdfec" }
       ]
     },
     {
       "id": "vhs",
       "title": "VHS Tapes",
-      "items": [ /* keep your existing VHS list exactly as-is */ ]
+      "items": [
+        { "id": "10d8d488", "title": "Xmas — Phillip Island", "year": "2003", "videoId": "10d8d488-4541-457c-bcd5-1df98519aa6d" },
+        { "id": "c85db069", "title": "Mimmy's Memorial", "year": "2001", "videoId": "c85db069-1fa6-4490-b361-873759847585" },
+        { "id": "5da927f9", "title": "Roger's Fishing", "year": "1999", "videoId": "5da927f9-3c2c-4a40-932a-7fd90b6f6788" },
+        { "id": "ce429027", "title": "Xmas — Phillip Island", "year": "1999", "videoId": "ce429027-ce99-41a5-b5e5-27a7820f31fe" },
+        { "id": "e0852ab1", "title": "Xmas — Darwin & Warragul", "year": "1998", "videoId": "e0852ab1-a022-485f-acad-5bbb4f36f27b" },
+        { "id": "59993a0a", "title": "Darwin Xmas", "year": "1997", "videoId": "59993a0a-4cb9-4b02-8db5-d77d4da1f574" },
+        { "id": "6c8a7d6d", "title": "Warragul & Xmas", "year": "1997", "videoId": "6c8a7d6d-248b-463c-a86f-35452ca9d094" }
+      ]
     },
     {
       "id": "short-films",
       "title": "Short Films",
-      "items": [ /* keep your existing short films exactly as-is */ ]
+      "items": [
+        { "id": "2392f29f", "title": "The Elwood Clan", "year": "2004", "videoId": "2392f29f-9d98-4d29-803a-6496b867a4af" },
+        { "id": "7a13c5ab", "title": "Prague 1", "year": "", "videoId": "7a13c5ab-50fa-48ac-8738-991739f22220" },
+        { "id": "521fb5fe", "title": "Prague 2", "year": "", "videoId": "521fb5fe-edcc-4e2e-b1e5-c7a783d9e3ad" },
+        { "id": "3ea1c274", "title": "The Way", "year": "", "videoId": "3ea1c274-e0d9-4140-adc1-c33504800db9" },
+        { "id": "75070c3e", "title": "Guitar", "year": "", "videoId": "75070c3e-f563-46e3-9435-23d42378df5d" }
+      ]
     }
   ]
 }
