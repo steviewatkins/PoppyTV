@@ -263,104 +263,436 @@
   
 
 
-/* Featured Film patch: uses the exact same parent width and h2 style as Video Memories */
-#featured-film.featured-film {
-  padding: 0 !important;
-  margin: 0 0 72px !important;
-  width: 100% !important;
-  box-sizing: border-box;
+
+
+/* ─────────────────────────────────────────────
+   PoppyTV dark cinematic direction
+   Keeps existing logo, lightbox, upload, and data logic intact.
+───────────────────────────────────────────── */
+:root {
+  --teal: #00d6d6;
+  --teal-soft: #70d7d8;
+  --cream: #f3e4ce;
+  --dark: #020b0f;
+  --panel: rgba(255,255,255,0.055);
+  --line: rgba(255,255,255,0.14);
+  --text: #f4efe7;
+  --muted-text: rgba(244,239,231,0.68);
+  --blue: #70d7d8;
 }
 
-#featured-film > h2 {
-  font-family: "Libre Baskerville", serif;
-  font-size: 44px;
-  font-weight: 400;
-  color: var(--blue);
-  letter-spacing: -0.03em;
-  padding-bottom: 10px;
-  border-bottom: 0.75px solid var(--blue);
-  margin: 0 0 20px;
-  line-height: 1.05;
+html,
+body {
+  background:
+    radial-gradient(900px 620px at 2% 18%, rgba(0, 214, 214, 0.14), transparent 62%),
+    radial-gradient(860px 680px at 0% 48%, rgba(0, 0, 0, 0.62), transparent 68%),
+    linear-gradient(135deg, #02090d 0%, #04181e 45%, #02070a 100%) !important;
+  color: var(--text) !important;
 }
 
-#featured-film .featured-card {
-  width: 100% !important;
-  aspect-ratio: 16 / 9;
-  display: block;
-  border-radius: 8px;
-  overflow: hidden;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(620px 500px at left 34%, rgba(0,0,0,0.72), transparent 70%),
+    radial-gradient(800px 700px at 10% 55%, rgba(0,182,192,0.08), transparent 70%);
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header / nav */
+.hero {
+  min-height: 74px;
+  padding: 16px 2.5% !important;
+  background: rgba(2, 9, 13, 0.88) !important;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  gap: 42px;
+}
+
+.hero-logo-wrap {
   margin: 0 !important;
-  background: #e5e5e5;
-  cursor: pointer;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+  flex: 0 0 auto;
 }
 
-#featured-film .featured-card img {
+.logo-svg {
+  width: 150px !important;
+  max-width: 150px;
+  height: auto;
+  display: block;
+}
+
+.hero-sub {
+  display: none !important;
+}
+
+.hero-shortcuts {
+  display: flex;
+  align-items: center;
+  gap: 34px !important;
+  flex: 1;
+}
+
+.shortcut-btn {
+  padding: 8px 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: rgba(244,239,231,0.78) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  position: relative;
+}
+
+.shortcut-btn svg {
+  display: none;
+}
+
+.shortcut-btn:hover,
+.shortcut-btn.is-active {
+  color: #fff !important;
+  background: transparent !important;
+}
+
+.shortcut-btn:hover::after,
+.shortcut-btn.is-active::after,
+.hero-shortcuts .shortcut-btn:first-child::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  background: var(--teal);
+  border-radius: 999px;
+}
+
+.upload-btn {
+  margin-left: auto !important;
+  background: transparent !important;
+  border: 1px solid rgba(0, 214, 214, 0.76) !important;
+  color: var(--teal) !important;
+  border-radius: 10px !important;
+  padding: 11px 18px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.upload-btn:hover {
+  background: rgba(0,214,214,0.10) !important;
+  transform: translateY(-1px);
+}
+
+/* Sticky nav follows same visual language */
+.sticky-nav {
+  background: rgba(2, 9, 13, 0.88) !important;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: none !important;
+}
+
+.sticky-logo {
+  height: 28px !important;
+}
+
+.sticky-shortcuts {
+  gap: 28px !important;
+}
+
+/* Catalogue */
+.catalogue {
+  padding: 18px 2.5% 110px !important;
+}
+
+.cat-section,
+#compilations {
+  margin-bottom: 54px !important;
+  scroll-margin-top: 92px;
+}
+
+.cat-label,
+#compilations > h2 {
+  font-family: "Libre Baskerville", serif !important;
+  color: var(--cream) !important;
+  font-size: 28px !important;
+  letter-spacing: -0.035em;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+.cat-label::after,
+#compilations > h2::after {
+  content: "";
+  display: block;
+  margin-top: 14px;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(0,214,214,0.46), rgba(255,255,255,0.08), transparent);
+}
+
+.subsection-label,
+.decade-label {
+  color: var(--teal) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin: 20px 0 10px !important;
+  letter-spacing: 0.01em;
+}
+
+.card-grid,
+.card-row {
+  gap: 12px !important;
+}
+
+/* Cards */
+.card {
+  background: rgba(255,255,255,0.045) !important;
+  border: 1px solid var(--line);
+  border-radius: 8px !important;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.24);
+}
+
+.card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.42), 0 0 0 1px rgba(0,214,214,0.30) !important;
+}
+
+.card-thumb {
+  background: rgba(255,255,255,0.05) !important;
+}
+
+.card-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 38%, rgba(0,0,0,0.62) 100%);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.card-info {
+  background: rgba(5, 13, 17, 0.94) !important;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.card-title {
+  color: rgba(255,255,255,0.92) !important;
+  font-weight: 500;
+}
+
+.card:hover .card-title {
+  color: #fff !important;
+}
+
+.card-year {
+  color: var(--teal-soft) !important;
+}
+
+.card-play {
+  background: rgba(0,214,214,0.50) !important;
+}
+
+/* Featured hero */
+#featured-film.featured-film {
+  margin: 6px 0 18px !important;
+  padding: 0 !important;
+}
+
+.featured-hero-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3.95 / 1;
+  min-height: 330px;
+  max-height: 430px;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: #061116;
+  cursor: pointer;
+  box-shadow: 0 28px 70px rgba(0,0,0,0.48);
+}
+
+.featured-hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1.01);
 }
 
-/* Keep major blue headers consistent */
-#compilations > h2,
-.cat-label,
-#featured-film > h2 {
-  font-size: 44px !important;
+.featured-hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(680px 360px at 0% 50%, rgba(0,0,0,0.84), transparent 72%),
+    linear-gradient(90deg, rgba(0,8,12,0.94) 0%, rgba(0,8,12,0.68) 22%, rgba(0,8,12,0.14) 56%, rgba(0,8,12,0.10) 100%),
+    linear-gradient(0deg, rgba(0,0,0,0.34), transparent 55%);
+}
+
+.featured-hero-copy {
+  position: absolute;
+  left: 36px;
+  top: 32px;
+  bottom: 30px;
+  width: min(430px, 46%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: var(--text);
+}
+
+.featured-kicker {
+  color: var(--teal);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.featured-hero-copy h1 {
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(42px, 4.7vw, 68px);
+  line-height: 0.98;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  color: var(--cream);
+  margin: 0 0 16px;
+}
+
+.featured-hero-copy p {
+  max-width: 410px;
+  color: rgba(244,239,231,0.82);
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+
+.featured-meta {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: rgba(244,239,231,0.76);
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.featured-meta span + span::before {
+  content: "•";
+  color: var(--teal);
+  margin-right: 13px;
+}
+
+.featured-watch {
+  appearance: none;
+  border: 0;
+  background: linear-gradient(135deg, #00b6c0, #008b91);
+  color: white;
+  border-radius: 8px;
+  padding: 13px 24px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 14px 34px rgba(0,182,192,0.22);
+}
+
+.featured-watch:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #17d5d8, #00a3aa);
+}
+
+/* VHS gets a slightly tactile treatment without needing new images */
+#vhs .card-info {
+  background:
+    linear-gradient(180deg, rgba(226,202,164,0.98), rgba(198,168,125,0.98)) !important;
+  border-top: 1px solid rgba(83,54,20,0.25);
+}
+
+#vhs .card-title {
+  color: #2b1a0c !important;
+  font-family: "Libre Baskerville", serif;
+  font-style: italic;
+  font-size: 12px;
+}
+
+#vhs .card-year {
+  color: #24180c !important;
+}
+
+/* Modals stay readable */
+.upload-overlay,
+#lightbox {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    padding: 18px 5% !important;
+  }
+
+  .hero-shortcuts {
+    gap: 18px !important;
+    width: 100%;
+  }
+
+  .upload-btn {
+    margin-left: 0 !important;
+  }
+
+  .catalogue {
+    padding: 24px 5% 90px !important;
+  }
+
+  .featured-hero-card {
+    aspect-ratio: 16 / 9;
+    min-height: 360px;
+  }
+
+  .featured-hero-copy {
+    left: 24px;
+    right: 24px;
+    width: auto;
+    top: auto;
+    bottom: 24px;
+    justify-content: flex-end;
+  }
+
+  .featured-hero-copy h1 {
+    font-size: 42px;
+  }
+
+  .featured-hero-copy p {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
-  #compilations > h2,
   .cat-label,
-  #featured-film > h2 {
-    font-size: 36px !important;
+  #compilations > h2 {
+    font-size: 34px !important;
   }
 
-  #featured-film.featured-film {
-    margin-bottom: 56px !important;
+  .logo-svg {
+    width: 130px !important;
   }
-}
-
-
-/* Header cleanup patch */
-.hero {
-  padding-top: 44px !important;
-  padding-bottom: 34px !important;
-}
-
-.hero-logo-wrap {
-  margin-bottom: 18px !important;
-}
-
-.hero::before,
-.hero::after,
-.hero-logo-wrap::before,
-.hero-logo-wrap::after {
-  content: none !important;
-  display: none !important;
-}
-
-.hero > .hero-dot,
-.hero > .dot,
-.hero .stray-dot {
-  display: none !important;
-}
-
-.hero nav,
-.hero .hero-nav,
-.hero .top-nav,
-.hero .nav-row,
-.hero .sticky-shortcuts {
-  margin-top: 0 !important;
-}
-
-/* Keep Featured Film and major section rhythm consistent */
-#featured-film.featured-film {
-  margin-bottom: 72px !important;
-}
-
-#compilations {
-  margin-bottom: 96px !important;
 }
 
 </style>
@@ -378,7 +710,7 @@
 <path d="M1.29294 95.0851V0H46.4584C53.5017 0 59.5326 1.23258 64.551 3.69775C69.6574 6.16292 73.5752 9.59655 76.3045 13.9986C79.1219 18.4007 80.5306 23.5512 80.5306 29.45C80.5306 35.3488 79.1219 40.5432 76.3045 45.0334C73.4872 49.5235 69.5253 53.0452 64.4189 55.5984C59.4005 58.0636 53.4137 59.2961 46.4584 59.2961H17.4046V43.7128H45.4019C50.0681 43.7128 53.6778 42.4361 56.231 39.8829C58.8722 37.2417 60.1929 33.8081 60.1929 29.582C60.1929 25.356 58.8722 21.9664 56.231 19.4132C53.6778 16.86 50.0681 15.5834 45.4019 15.5834H21.6306V95.0851H1.29294Z" fill="white"/>
 <path d="M117.564 26.56C125.048 26.56 131.563 28.0131 137.109 30.9184C142.744 33.8237 147.102 37.8734 150.184 43.0678C153.265 48.2622 154.806 54.3372 154.806 61.2924C154.806 68.2477 153.221 74.4112 150.052 79.7817C146.97 85.064 142.612 89.2014 136.978 92.1948C131.431 95.1001 124.96 96.5531 117.564 96.5532C110.169 96.5532 103.653 95.1001 98.0185 92.1948C92.4722 89.2014 88.1137 85.064 84.9443 79.7817C81.8629 74.4112 80.3222 68.2477 80.3222 61.2924C80.3223 54.3373 81.8629 48.2622 84.9443 43.0678C88.1137 37.8735 92.4721 33.8237 98.0185 30.9184C103.653 28.013 110.169 26.56 117.564 26.56ZM108.968 41.4614C107.244 40.4661 105.089 41.71 105.089 43.7006V79.5317C105.089 81.5221 107.244 82.7662 108.968 81.7709L139.998 63.8549C141.722 62.8595 141.722 60.3717 139.998 59.3764L108.968 41.4614Z" fill="white"/>
 </svg></a>
-  <div class="sticky-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Video Memories</span><span class="mobile-label">Memories</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a></div>
+  <div class="sticky-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Home</span><span class="mobile-label">Home</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a></div>
   <button type="button" class="upload-btn" onclick="openUploadModal()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <span>Upload Video</span>
@@ -415,19 +747,35 @@
 <div class="catalogue">
   <section id="compilations">
   
+
 <section id="featured-film" class="featured-film">
-  <h2>Featured Film</h2>
   <article
-    class="featured-card"
+    class="featured-hero-card"
     onclick="openVideo('https://iframe.mediadelivery.net/embed/636169/357b19fd-9d73-4402-8795-518c5509a073', '', 'Down South', { videoId: '357b19fd-9d73-4402-8795-518c5509a073', year: '2006', category: 'holidays' })"
     aria-label="Watch Down South"
   >
     <img
+      class="featured-hero-img"
       src="https://poppytv-upload-worker.hello-291.workers.dev/thumbnail?videoId=357b19fd-9d73-4402-8795-518c5509a073&v=20260425a"
       alt="Down South"
       loading="eager"
       onerror="handleThumbnailError(this)"
     >
+    <div class="featured-hero-shade"></div>
+    <div class="featured-hero-copy">
+      <div class="featured-kicker">Featured Film</div>
+      <h1>Down South</h1>
+      <p>A family trip through the heart of Australia. Sun, road, and the kind of memories that get better with time.</p>
+      <div class="featured-meta">
+        <span>2006</span>
+        <span>Holiday</span>
+        <span>Family Travel</span>
+      </div>
+      <button class="featured-watch" type="button">
+        <span>▶</span>
+        Watch Now
+      </button>
+    </div>
   </article>
 </section>
 
@@ -1053,11 +1401,6 @@ function buildThumbnailUrl(videoId, savedThumbnailUrl) {
   }
 
   return `${WORKER_BASE_URL}/thumbnail?${params.toString()}`;
-}
-
-function handleThumbnailError(img) {
-  img.onerror = null;
-  img.style.display = "none";
 }
 
 function handleThumbnailError(img) {
