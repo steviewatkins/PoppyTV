@@ -1196,6 +1196,71 @@ body > * {
   }
 }
 
+
+/* Desktop header refinement */
+.sticky-nav {
+  display: none !important;
+}
+
+.hero {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 220 !important;
+  background:
+    radial-gradient(980px 420px at -6% -18%, rgba(0, 214, 214, 0.42), transparent 72%),
+    radial-gradient(760px 320px at 18% -10%, rgba(0, 182, 192, 0.28), transparent 78%),
+    rgba(2, 9, 13, 0.94) !important;
+}
+
+.hero::before {
+  background:
+    radial-gradient(760px 300px at -2% -12%, rgba(0, 182, 192, 0.28), transparent 72%) !important;
+}
+
+.logo-svg *,
+.sticky-logo * {
+  fill: #00B6C0 !important;
+}
+
+.cat-section,
+#compilations {
+  margin-bottom: 78px !important;
+}
+
+#vhs {
+  margin-top: 18px !important;
+}
+
+.featured-watch {
+  border-radius: 999px !important;
+  padding: 11px 18px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 10px 26px rgba(0, 182, 192, 0.20) !important;
+}
+
+/* Keep mobile header compact while preserving the same locked header */
+@media (max-width: 768px) {
+  .hero {
+    position: sticky !important;
+    top: 0 !important;
+    background:
+      radial-gradient(520px 240px at -6% -18%, rgba(0, 214, 214, 0.36), transparent 72%),
+      rgba(2, 9, 13, 0.94) !important;
+  }
+
+  .cat-section,
+  #compilations {
+    margin-bottom: 64px !important;
+  }
+}
+
 </style>
 </head>
 <body id="top">
@@ -1266,7 +1331,7 @@ body > * {
     <div class="featured-hero-copy">
       <div class="featured-kicker">Featured Film</div>
       <h1>Down South</h1>
-      <p>The Darwin Davis's head down south for a week of fun-filled chaos. Twenty years on</p>
+      <p>A family trip through the heart of Australia. Sun, road, and the kind of memories that get better with time.</p>
       <div class="featured-meta">
         <span>2006</span>
         <span>Holiday</span>
