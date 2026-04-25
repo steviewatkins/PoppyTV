@@ -65,7 +65,7 @@
     .cat-section { margin-bottom: 124px; scroll-margin-top: 80px; }
     .cat-label {
       font-family: "Libre Baskerville", serif;
-      font-size: 52px; font-weight: 400; font-style: normal;
+      font-size: 44px; font-weight: 400; font-style: normal;
       color: #1F7BCC; letter-spacing: -0.03em;
       padding-bottom: 10px; border-bottom: 0.75px solid #1F7BCC;
       margin-bottom: 20px; display: block; line-height: 1.05;
@@ -80,7 +80,7 @@
     #compilations { margin-bottom: 96px; scroll-margin-top: 80px; }
     #compilations > h2 {
       font-family: "Libre Baskerville", serif;
-      font-size: 52px; font-weight: 400; color: var(--blue); letter-spacing: -0.03em;
+      font-size: 44px; font-weight: 400; color: var(--blue); letter-spacing: -0.03em;
       padding-bottom: 10px; border-bottom: 0.75px solid var(--blue); margin-bottom: 20px; line-height: 1.05;
     }
     .subsection-label {
@@ -265,19 +265,21 @@
 
 /* Featured Film */
 .featured-section {
-  padding: 0 64px 56px;
+  padding: 0 0 48px;
+  margin: 0;
 }
 
 .featured-heading {
-  margin: 0 0 16px;
+  margin: 0 0 20px;
 }
 
 .featured-heading h1 {
-  font-family: Georgia, serif;
-  font-size: clamp(48px, 6vw, 72px);
-  line-height: 0.95;
+  font-family: "Libre Baskerville", serif;
+  font-size: 44px;
   font-weight: 400;
-  color: #2f73b8;
+  color: var(--blue);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
   margin: 0;
 }
 
@@ -285,12 +287,12 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
   border: none;
   background: rgba(255,255,255,0.04);
   cursor: pointer;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
 }
 
 .featured-card img {
@@ -300,13 +302,15 @@
   display: block;
 }
 
-@media (max-width: 759px) {
-  .featured-section {
-    padding: 0 28px 42px;
+@media (max-width: 768px) {
+  .cat-label,
+  #compilations > h2,
+  .featured-heading h1 {
+    font-size: 36px;
   }
 
-  .featured-heading h1 {
-    font-size: clamp(42px, 12vw, 58px);
+  .featured-section {
+    padding: 0 0 38px;
   }
 }
 
@@ -882,11 +886,7 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
   opacity: 0.82;
 }
 
-@media (min-width: 760px) {
-  .featured-card {
-    border-radius: 16px;
-  }
-}
+
 
 </style>
 
