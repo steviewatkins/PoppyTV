@@ -1261,6 +1261,66 @@ body > * {
   }
 }
 
+
+/* Header logo + sticky adjustment */
+.logo-svg *,
+.sticky-logo * {
+  fill: #ffffff !important;
+}
+
+@media (min-width: 769px) {
+  .hero {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 220 !important;
+  }
+}
+
+
+/* Mobile upload button visibility fix */
+@media (max-width: 768px) {
+  .hero {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 220 !important;
+  }
+
+  .hero-logo-wrap {
+    padding-right: 118px !important;
+  }
+
+  .upload-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: absolute !important;
+    right: 16px !important;
+    top: 18px !important;
+    height: 40px !important;
+    width: auto !important;
+    min-width: 86px !important;
+    padding: 0 14px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    border-radius: 999px !important;
+    background: rgba(0, 182, 192, 0.12) !important;
+    border: 1px solid rgba(0, 182, 192, 0.7) !important;
+    color: #00B6C0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 999 !important;
+  }
+
+  .upload-btn span {
+    display: inline !important;
+    font-size: 13px !important;
+  }
+
+  .upload-btn svg {
+    display: none !important;
+  }
+}
+
 </style>
 </head>
 <body id="top">
@@ -1331,7 +1391,7 @@ body > * {
     <div class="featured-hero-copy">
       <div class="featured-kicker">Featured Film</div>
       <h1>Down South</h1>
-      <p>A family trip through the heart of Australia. Sun, road, and the kind of memories that get better with time.</p>
+      <p>20th Anniversary. In 2006 the Darwin Davis's headed down south for a week of fun filled chaos.</p>
       <div class="featured-meta">
         <span>2006</span>
         <span>Holiday</span>
