@@ -262,6 +262,88 @@
     }
   
 
+
+/* Featured Film */
+.featured-section {
+  padding: 0 20px 34px;
+}
+
+.featured-section .section-heading {
+  margin-bottom: 14px;
+}
+
+.featured-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.04);
+  cursor: pointer;
+  box-shadow: 0 18px 44px rgba(3, 22, 33, 0.16);
+}
+
+.featured-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.featured-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.62) 100%);
+  pointer-events: none;
+}
+
+.featured-meta {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 20px;
+  z-index: 1;
+  color: #fff;
+}
+
+.featured-kicker {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  margin-bottom: 6px;
+}
+
+.featured-title {
+  font-size: clamp(28px, 5vw, 52px);
+  line-height: 0.95;
+  font-weight: 600;
+  margin: 0;
+}
+
+.featured-year {
+  margin-top: 6px;
+  font-size: 15px;
+  opacity: 0.82;
+}
+
+@media (min-width: 760px) {
+  .featured-section {
+    padding: 0 32px 44px;
+  }
+
+  .featured-card {
+    border-radius: 28px;
+  }
+
+  .featured-meta {
+    left: 34px;
+    bottom: 30px;
+  }
+}
+
 </style>
 </head>
 <body id="top">
@@ -314,7 +396,31 @@
 
 <div class="catalogue">
   <section id="compilations">
-  <h2>Video Memories</h2>
+  
+<section class="featured-section" id="featured-film">
+  <div class="section-heading">
+    <h2>Featured Film</h2>
+  </div>
+  <article
+    class="featured-card"
+    onclick="openVideo('https://iframe.mediadelivery.net/embed/636169/357b19fd-9d73-4402-8795-518c5509a073', '', 'Down South', { videoId: '357b19fd-9d73-4402-8795-518c5509a073', year: '2006', category: 'holidays' })"
+    aria-label="Watch Down South"
+  >
+    <img
+      src="https://poppytv-upload-worker.hello-291.workers.dev/thumbnail?videoId=357b19fd-9d73-4402-8795-518c5509a073&v=20260424e"
+      alt="Down South"
+      loading="eager"
+      onerror="handleThumbnailError(this)"
+    />
+    <div class="featured-meta">
+      <div class="featured-kicker">Featured Film</div>
+      <h3 class="featured-title">Down South</h3>
+      <div class="featured-year">2006</div>
+    </div>
+  </article>
+</section>
+
+<h2>Video Memories</h2>
 
 <h3 class="subsection-label">Milestones</h3>
   <div class="card-grid" id="milestones-grid">
@@ -747,6 +853,88 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
 }
 .upload-success-state strong { color: var(--teal); }
 
+
+
+/* Featured Film */
+.featured-section {
+  padding: 0 20px 34px;
+}
+
+.featured-section .section-heading {
+  margin-bottom: 14px;
+}
+
+.featured-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.04);
+  cursor: pointer;
+  box-shadow: 0 18px 44px rgba(3, 22, 33, 0.16);
+}
+
+.featured-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.featured-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.62) 100%);
+  pointer-events: none;
+}
+
+.featured-meta {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 20px;
+  z-index: 1;
+  color: #fff;
+}
+
+.featured-kicker {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  margin-bottom: 6px;
+}
+
+.featured-title {
+  font-size: clamp(28px, 5vw, 52px);
+  line-height: 0.95;
+  font-weight: 600;
+  margin: 0;
+}
+
+.featured-year {
+  margin-top: 6px;
+  font-size: 15px;
+  opacity: 0.82;
+}
+
+@media (min-width: 760px) {
+  .featured-section {
+    padding: 0 32px 44px;
+  }
+
+  .featured-card {
+    border-radius: 28px;
+  }
+
+  .featured-meta {
+    left: 34px;
+    bottom: 30px;
+  }
+}
 
 </style>
 
