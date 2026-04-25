@@ -291,43 +291,7 @@
   display: block;
 }
 
-.featured-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.62) 100%);
-  pointer-events: none;
-}
 
-.featured-meta {
-  position: absolute;
-  left: 22px;
-  right: 22px;
-  bottom: 20px;
-  z-index: 1;
-  color: #fff;
-}
-
-.featured-kicker {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.78;
-  margin-bottom: 6px;
-}
-
-.featured-title {
-  font-size: clamp(28px, 5vw, 52px);
-  line-height: 0.95;
-  font-weight: 600;
-  margin: 0;
-}
-
-.featured-year {
-  margin-top: 6px;
-  font-size: 15px;
-  opacity: 0.82;
-}
 
 @media (min-width: 760px) {
   .featured-section {
@@ -412,11 +376,6 @@
       loading="eager"
       onerror="handleThumbnailError(this)"
     />
-    <div class="featured-meta">
-      <div class="featured-kicker">Featured Film</div>
-      <h3 class="featured-title">Down South</h3>
-      <div class="featured-year">2006</div>
-    </div>
   </article>
 </section>
 
