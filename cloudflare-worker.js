@@ -3,7 +3,7 @@ const BUNNY_CDN_HOST = "vz-82cf94cd-f52.b-cdn.net";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Methods": "GET, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type"
 };
 
@@ -23,7 +23,7 @@ export default {
         return new Response("Missing videoId", { status: 400, headers: CORS });
       }
 
-      const bunnyMeta = await fetch(
+      const metaRes = await fetch(
         `https://video.bunnycdn.com/library/${BUNNY_LIBRARY_ID}/videos/${videoId}`,
         {
           headers: {
@@ -33,19 +33,15 @@ export default {
         }
       );
 
-      if (!bunnyMeta.ok) {
-        return new Response("Could not fetch Bunny video info", { status: 500, headers: CORS });
+      if (!metaRes.ok) {
+        return new Response("Failed to fetch video metadata", { status: 500, headers: CORS });
       }
 
-      const video = await bunnyMeta.json();
-      const thumbnailFileName = video.thumbnailFileName || "thumbnail.jpg";
-      const thumbnailUrl = `https://${BUNNY_CDN_HOST}/${videoId}/${thumbnailFileName}?v=${version}`;
+      const video = await metaRes.json();
+      const fileName = video.thumbnailFileName || "thumbnail.jpg";
+      const thumbnailUrl = `https://${BUNNY_CDN_HOST}/${videoId}/${fileName}?v=${version}`;
 
-      const imageRes = await fetch(thumbnailUrl, {
-        headers: {
-          "Cache-Control": "no-cache"
-        }
-      });
+      const imageRes = await fetch(thumbnailUrl);
 
       if (!imageRes.ok) {
         return new Response("Thumbnail not found", { status: 404, headers: CORS });
@@ -56,7 +52,7 @@ export default {
       headers.set("Cache-Control", "no-store");
 
       return new Response(imageRes.body, {
-        status: imageRes.status,
+        status: 200,
         headers
       });
     }
@@ -65,16 +61,12 @@ export default {
       const videoUrl = url.searchParams.get("url");
       const download = url.searchParams.get("download");
 
-      if (!videoUrl) {
-        return new Response("Missing url parameter", { status: 400, headers: CORS });
-      }
-
-      if (!videoUrl.includes(BUNNY_CDN_HOST)) {
+      if (!videoUrl || !videoUrl.includes(BUNNY_CDN_HOST)) {
         return new Response("Forbidden", { status: 403, headers: CORS });
       }
 
-      const bunnyResponse = await fetch(videoUrl);
-      const headers = new Headers(bunnyResponse.headers);
+      const bunnyRes = await fetch(videoUrl);
+      const headers = new Headers(bunnyRes.headers);
       headers.set("Access-Control-Allow-Origin", "*");
 
       if (download === "1") {
@@ -83,8 +75,8 @@ export default {
         headers.set("Content-Disposition", `attachment; filename="${filename}"`);
       }
 
-      return new Response(bunnyResponse.body, {
-        status: bunnyResponse.status,
+      return new Response(bunnyRes.body, {
+        status: bunnyRes.status,
         headers
       });
     }
