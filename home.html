@@ -1130,6 +1130,72 @@ body > * {
   }
 }
 
+
+/* Requested header/nav refinements */
+.hero {
+  background:
+    radial-gradient(520px 260px at 0% 0%, rgba(0, 214, 214, 0.24), transparent 66%),
+    rgba(2, 9, 13, 0.92) !important;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(440px 220px at 0% 0%, rgba(0, 182, 192, 0.22), transparent 68%);
+  opacity: 0.85;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.featured-watch {
+  gap: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background:
+      radial-gradient(420px 220px at 0% 0%, rgba(0, 214, 214, 0.30), transparent 70%),
+      rgba(2, 9, 13, 0.94) !important;
+  }
+
+  .hero-logo-wrap {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .upload-btn {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+    position: relative !important;
+    z-index: 3 !important;
+  }
+
+  .mobile-bottom-nav a[href="#compilations"] span:last-child {
+    font-size: 10.5px;
+  }
+}
+
+@media (max-width: 430px) {
+  .upload-btn {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
 </style>
 </head>
 <body id="top">
@@ -1145,7 +1211,7 @@ body > * {
 <path d="M1.29294 95.0851V0H46.4584C53.5017 0 59.5326 1.23258 64.551 3.69775C69.6574 6.16292 73.5752 9.59655 76.3045 13.9986C79.1219 18.4007 80.5306 23.5512 80.5306 29.45C80.5306 35.3488 79.1219 40.5432 76.3045 45.0334C73.4872 49.5235 69.5253 53.0452 64.4189 55.5984C59.4005 58.0636 53.4137 59.2961 46.4584 59.2961H17.4046V43.7128H45.4019C50.0681 43.7128 53.6778 42.4361 56.231 39.8829C58.8722 37.2417 60.1929 33.8081 60.1929 29.582C60.1929 25.356 58.8722 21.9664 56.231 19.4132C53.6778 16.86 50.0681 15.5834 45.4019 15.5834H21.6306V95.0851H1.29294Z" fill="white"/>
 <path d="M117.564 26.56C125.048 26.56 131.563 28.0131 137.109 30.9184C142.744 33.8237 147.102 37.8734 150.184 43.0678C153.265 48.2622 154.806 54.3372 154.806 61.2924C154.806 68.2477 153.221 74.4112 150.052 79.7817C146.97 85.064 142.612 89.2014 136.978 92.1948C131.431 95.1001 124.96 96.5531 117.564 96.5532C110.169 96.5532 103.653 95.1001 98.0185 92.1948C92.4722 89.2014 88.1137 85.064 84.9443 79.7817C81.8629 74.4112 80.3222 68.2477 80.3222 61.2924C80.3223 54.3373 81.8629 48.2622 84.9443 43.0678C88.1137 37.8735 92.4721 33.8237 98.0185 30.9184C103.653 28.013 110.169 26.56 117.564 26.56ZM108.968 41.4614C107.244 40.4661 105.089 41.71 105.089 43.7006V79.5317C105.089 81.5221 107.244 82.7662 108.968 81.7709L139.998 63.8549C141.722 62.8595 141.722 60.3717 139.998 59.3764L108.968 41.4614Z" fill="white"/>
 </svg></a>
-  <div class="sticky-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Home</span><span class="mobile-label">Home</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a></div>
+  <div class="sticky-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Compilations</span><span class="mobile-label">Comps</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a></div>
   <button type="button" class="upload-btn" onclick="openUploadModal()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <span>Upload Video</span>
@@ -1176,7 +1242,7 @@ body > * {
 <path d="M1.29294 95.0851V0H46.4584C53.5017 0 59.5326 1.23258 64.551 3.69775C69.6574 6.16292 73.5752 9.59655 76.3045 13.9986C79.1219 18.4007 80.5306 23.5512 80.5306 29.45C80.5306 35.3488 79.1219 40.5432 76.3045 45.0334C73.4872 49.5235 69.5253 53.0452 64.4189 55.5984C59.4005 58.0636 53.4137 59.2961 46.4584 59.2961H17.4046V43.7128H45.4019C50.0681 43.7128 53.6778 42.4361 56.231 39.8829C58.8722 37.2417 60.1929 33.8081 60.1929 29.582C60.1929 25.356 58.8722 21.9664 56.231 19.4132C53.6778 16.86 50.0681 15.5834 45.4019 15.5834H21.6306V95.0851H1.29294Z" fill="white"/>
 <path d="M117.564 26.56C125.048 26.56 131.563 28.0131 137.109 30.9184C142.744 33.8237 147.102 37.8734 150.184 43.0678C153.265 48.2622 154.806 54.3372 154.806 61.2924C154.806 68.2477 153.221 74.4112 150.052 79.7817C146.97 85.064 142.612 89.2014 136.978 92.1948C131.431 95.1001 124.96 96.5531 117.564 96.5532C110.169 96.5532 103.653 95.1001 98.0185 92.1948C92.4722 89.2014 88.1137 85.064 84.9443 79.7817C81.8629 74.4112 80.3222 68.2477 80.3222 61.2924C80.3223 54.3373 81.8629 48.2622 84.9443 43.0678C88.1137 37.8735 92.4721 33.8237 98.0185 30.9184C103.653 28.013 110.169 26.56 117.564 26.56ZM108.968 41.4614C107.244 40.4661 105.089 41.71 105.089 43.7006V79.5317C105.089 81.5221 107.244 82.7662 108.968 81.7709L139.998 63.8549C141.722 62.8595 141.722 60.3717 139.998 59.3764L108.968 41.4614Z" fill="white"/>
 </svg></div>
-<div class="hero-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Video Memories</span><span class="mobile-label">Memories</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a><button type="button" class="upload-btn" onclick="openUploadModal()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Upload Video</span></button></div>
+<div class="hero-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Compilations</span><span class="mobile-label">Compilations</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a><button type="button" class="upload-btn" onclick="openUploadModal()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Upload Video</span></button></div>
 </div>
 
 <div class="catalogue">
@@ -1207,14 +1273,12 @@ body > * {
         <span>Family Travel</span>
       </div>
       <button class="featured-watch" type="button">
-        <span>▶</span>
-        Watch Now
-      </button>
+        Watch Now</button>
     </div>
   </article>
 </section>
 
-<h2>Video Memories</h2>
+<h2>Compilations</h2>
 
 <h3 class="subsection-label">Milestones</h3>
   <div class="card-grid" id="milestones-grid">
@@ -2060,7 +2124,7 @@ loadCommunityUploads();
       <rect x="3.5" y="5" width="17" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
       <path d="M10 9l5 3-5 3V9Z" fill="currentColor"/>
     </svg>
-    <span>Memories</span>
+    <span>Compilations</span>
   </a>
   <a href="#vhs" class="mobile-bottom-link">
     <svg class="mobile-bottom-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
