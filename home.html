@@ -2147,6 +2147,84 @@ html {
   }
 }
 
+
+/* Final overlay layering + mobile upload scroll fix */
+#upload-modal,
+.upload-modal,
+.upload-overlay,
+#lightbox,
+.lightbox {
+  z-index: 20000 !important;
+}
+
+.delete-confirm-overlay {
+  z-index: 21000 !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    z-index: 9000 !important;
+  }
+
+  #upload-modal,
+  .upload-modal,
+  .upload-overlay {
+    z-index: 20000 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 14px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  #upload-modal .upload-panel,
+  #upload-modal .upload-content,
+  #upload-modal .upload-modal-content,
+  #upload-modal form,
+  .upload-panel,
+  .upload-content,
+  .upload-modal-content {
+    max-height: calc(100dvh - 28px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: calc(24px + env(safe-area-inset-bottom)) !important;
+  }
+
+  #lightbox,
+  .lightbox {
+    z-index: 20000 !important;
+  }
+
+  #lightbox-inner {
+    z-index: 20001 !important;
+  }
+}
+
+
+/* Unify film-title treatment across all sections */
+.card-title,
+#vhs .card-title,
+#short-films .card-title,
+#compilations .card-title {
+  font-family: "Libre Baskerville", Georgia, serif !important;
+  font-style: italic !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.25 !important;
+  color: rgba(242, 255, 255, 0.92) !important;
+}
+
+.card-year,
+#vhs .card-year,
+#short-films .card-year,
+#compilations .card-year {
+  font-family: "Work Sans", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #9ED6D9 !important;
+}
+
 </style>
 </head>
 <body id="top">
@@ -2223,7 +2301,7 @@ html {
     <div class="featured-hero-copy">
       <div class="featured-kicker">Featured Film</div>
       <h1>Down South</h1>
-      <p>20th Anniversary. In 2006, the Darwin Davis’s headed down south for a week of fun-filled chaos.</p>
+      <p>20th Anniversary. The Darwin Davis's head down south for a week of fun-filled chaos.</p>
       <div class="featured-meta"><span>2006</span></div>
       <button class="featured-watch" type="button">Watch Now</button>
     </div>
@@ -2415,7 +2493,7 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
   <div class="upload-modal">
     <button type="button" class="upload-close" onclick="closeUploadModal()">×</button>
 
-    <h2 class="upload-title">Upload a Video</h2>
+    <h2 class="upload-title">Upload a Compilation</h2>
     <p class="upload-subtitle">Share a memory with the family</p>
 
     <div id="upload-form">
