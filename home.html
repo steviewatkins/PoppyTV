@@ -2226,7 +2226,7 @@ html {
 }
 
 
-/* Sticky header refinement: desktop stays sticky, mobile shrinks on scroll */
+/* Sticky + shrinking header */
 .hero {
   position: sticky !important;
   top: 0 !important;
@@ -2243,26 +2243,17 @@ html {
   transition: width 0.24s ease, max-width 0.24s ease, opacity 0.24s ease;
 }
 
-@media (min-width: 769px) {
-  .hero {
-    position: sticky !important;
-    top: 0 !important;
-  }
-
-  body.header-condensed .hero {
-    box-shadow: 0 12px 34px rgba(0,0,0,0.22);
-  }
+body.header-small .hero {
+  box-shadow: 0 14px 38px rgba(0,0,0,0.32) !important;
 }
 
 @media (max-width: 768px) {
   .hero {
-    position: sticky !important;
-    top: 0 !important;
     min-height: 62px !important;
     height: 62px !important;
   }
 
-  body.header-condensed .hero {
+  body.header-small .hero {
     min-height: 50px !important;
     height: 50px !important;
     padding-top: 6px !important;
@@ -2271,23 +2262,231 @@ html {
       radial-gradient(620px 220px at -8% -20%, rgba(0, 245, 245, 0.44), transparent 72%),
       linear-gradient(90deg, rgba(0, 182, 192, 0.24) 0%, rgba(2, 9, 13, 0.98) 74%),
       rgba(2, 9, 13, 0.98) !important;
-    box-shadow: 0 12px 34px rgba(0,0,0,0.34);
   }
 
-  body.header-condensed .logo-svg {
+  body.header-small .logo-svg {
     width: 112px !important;
     max-width: 112px !important;
     opacity: 0.96;
   }
 
-  body.header-condensed .upload-btn {
+  body.header-small .upload-btn {
     height: 34px !important;
     padding: 0 10px !important;
     font-size: 11px !important;
   }
 
-  body.header-condensed .upload-btn span {
+  body.header-small .upload-btn span {
     font-size: 11px !important;
+  }
+}
+
+
+/* Premium upload flow + Apple TV-style motion polish */
+.card,
+.featured-hero-card,
+.featured-watch,
+.upload-btn {
+  will-change: transform, box-shadow;
+}
+
+.featured-hero-img {
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter 0.5s ease !important;
+}
+
+.featured-hero-card:hover .featured-hero-img {
+  transform: scale(1.025) !important;
+  filter: saturate(1.06) brightness(1.04);
+}
+
+.featured-hero-card:hover {
+  box-shadow:
+    0 34px 90px rgba(0,0,0,0.56),
+    0 0 0 1px rgba(0,214,214,0.28) !important;
+}
+
+.card {
+  transition:
+    transform 0.22s cubic-bezier(.2,.8,.2,1),
+    box-shadow 0.22s ease,
+    border-color 0.22s ease !important;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.012) !important;
+  box-shadow:
+    0 22px 54px rgba(0,0,0,0.46),
+    0 0 0 1px rgba(0,214,214,0.26) !important;
+}
+
+/* Upload modal becomes a cleaner, step-like sheet without changing the form logic */
+#upload-modal,
+.upload-modal,
+.upload-overlay {
+  z-index: 20000 !important;
+}
+
+#lightbox,
+.lightbox {
+  z-index: 20000 !important;
+}
+
+#upload-modal .upload-panel,
+#upload-modal .upload-content,
+#upload-modal .upload-modal-content,
+.upload-panel,
+.upload-content,
+.upload-modal-content {
+  position: relative !important;
+  background:
+    radial-gradient(520px 280px at 0% 0%, rgba(0,214,214,0.15), transparent 72%),
+    rgba(3, 15, 20, 0.96) !important;
+  border: 1px solid rgba(158,214,217,0.18) !important;
+  box-shadow: 0 28px 90px rgba(0,0,0,0.62) !important;
+  backdrop-filter: blur(22px) !important;
+  -webkit-backdrop-filter: blur(22px) !important;
+}
+
+/* Visual step rails: does not alter form behaviour */
+#upload-modal .upload-panel::before,
+#upload-modal .upload-content::before,
+#upload-modal .upload-modal-content::before,
+.upload-panel::before,
+.upload-content::before,
+.upload-modal-content::before {
+  content: "1  Details    2  Category    3  Video";
+  display: block;
+  margin: 0 0 18px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  max-width: 100%;
+  font-family: "Work Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(158,214,217,0.9);
+  background: rgba(0,182,192,0.10);
+  border: 1px solid rgba(0,214,214,0.22);
+}
+
+#upload-modal h2,
+.upload-modal h2,
+.upload-panel h2,
+.upload-content h2,
+.upload-modal-content h2 {
+  font-family: "Libre Baskerville", Georgia, serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: #F2FFFF !important;
+}
+
+#upload-modal input,
+.upload-modal input,
+.upload-panel input,
+.upload-content input,
+.upload-modal-content input {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(158,214,217,0.24) !important;
+  color: #F2FFFF !important;
+}
+
+#upload-modal input:focus,
+.upload-modal input:focus,
+.upload-panel input:focus,
+.upload-content input:focus,
+.upload-modal-content input:focus {
+  border-color: rgba(0,214,214,0.70) !important;
+  box-shadow: 0 0 0 3px rgba(0,214,214,0.12) !important;
+}
+
+#upload-modal .cat-btn,
+.upload-modal .cat-btn,
+.cat-btn {
+  border-radius: 999px !important;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease !important;
+}
+
+#upload-modal .cat-btn:hover,
+.upload-modal .cat-btn:hover,
+.cat-btn:hover {
+  transform: translateY(-1px);
+}
+
+#upload-modal .cat-btn.active,
+.upload-modal .cat-btn.active,
+.cat-btn.active {
+  background: rgba(0,182,192,0.18) !important;
+  border-color: rgba(0,214,214,0.75) !important;
+  color: #ffffff !important;
+}
+
+#upload-submit,
+.upload-submit {
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #00B6C0, #008A91) !important;
+  color: white !important;
+  box-shadow: 0 16px 42px rgba(0,182,192,0.22) !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+#upload-submit:hover,
+.upload-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 48px rgba(0,182,192,0.30) !important;
+}
+
+/* Make overlays fully cover bottom nav and be scroll-safe on phones */
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    z-index: 9000 !important;
+  }
+
+  #upload-modal,
+  .upload-modal,
+  .upload-overlay,
+  #lightbox,
+  .lightbox {
+    z-index: 20000 !important;
+  }
+
+  #upload-modal,
+  .upload-modal,
+  .upload-overlay {
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 14px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  #upload-modal .upload-panel,
+  #upload-modal .upload-content,
+  #upload-modal .upload-modal-content,
+  #upload-modal form,
+  .upload-panel,
+  .upload-content,
+  .upload-modal-content {
+    max-height: calc(100dvh - 28px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: calc(24px + env(safe-area-inset-bottom)) !important;
+  }
+
+  #upload-modal .upload-panel::before,
+  #upload-modal .upload-content::before,
+  #upload-modal .upload-modal-content::before,
+  .upload-panel::before,
+  .upload-content::before,
+  .upload-modal-content::before {
+    content: "1 Details  ·  2 Category  ·  3 Video";
+    font-size: 10.5px;
+    margin-bottom: 14px;
+  }
+
+  .featured-hero-card:hover .featured-hero-img,
+  .card:hover {
+    transform: none !important;
   }
 }
 
@@ -3266,12 +3465,12 @@ loadCommunityUploads();
 
 <script>
 (function() {
-  function updateHeaderCondensed() {
-    document.body.classList.toggle('header-condensed', window.scrollY > 48);
+  function updateHeaderSmall() {
+    document.body.classList.toggle('header-small', window.scrollY > 48);
   }
 
-  updateHeaderCondensed();
-  window.addEventListener('scroll', updateHeaderCondensed, { passive: true });
+  updateHeaderSmall();
+  window.addEventListener('scroll', updateHeaderSmall, { passive: true });
 })();
 </script>
 
