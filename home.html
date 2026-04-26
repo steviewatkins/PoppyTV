@@ -2225,6 +2225,72 @@ html {
   color: #9ED6D9 !important;
 }
 
+
+/* Sticky header refinement: desktop stays sticky, mobile shrinks on scroll */
+.hero {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 220 !important;
+  transition:
+    height 0.24s ease,
+    min-height 0.24s ease,
+    padding 0.24s ease,
+    background 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.logo-svg {
+  transition: width 0.24s ease, max-width 0.24s ease, opacity 0.24s ease;
+}
+
+@media (min-width: 769px) {
+  .hero {
+    position: sticky !important;
+    top: 0 !important;
+  }
+
+  body.header-condensed .hero {
+    box-shadow: 0 12px 34px rgba(0,0,0,0.22);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    position: sticky !important;
+    top: 0 !important;
+    min-height: 62px !important;
+    height: 62px !important;
+  }
+
+  body.header-condensed .hero {
+    min-height: 50px !important;
+    height: 50px !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    background:
+      radial-gradient(620px 220px at -8% -20%, rgba(0, 245, 245, 0.44), transparent 72%),
+      linear-gradient(90deg, rgba(0, 182, 192, 0.24) 0%, rgba(2, 9, 13, 0.98) 74%),
+      rgba(2, 9, 13, 0.98) !important;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.34);
+  }
+
+  body.header-condensed .logo-svg {
+    width: 112px !important;
+    max-width: 112px !important;
+    opacity: 0.96;
+  }
+
+  body.header-condensed .upload-btn {
+    height: 34px !important;
+    padding: 0 10px !important;
+    font-size: 11px !important;
+  }
+
+  body.header-condensed .upload-btn span {
+    font-size: 11px !important;
+  }
+}
+
 </style>
 </head>
 <body id="top">
@@ -3196,6 +3262,18 @@ loadCommunityUploads();
   </a>
 </nav>
 
+
+
+<script>
+(function() {
+  function updateHeaderCondensed() {
+    document.body.classList.toggle('header-condensed', window.scrollY > 48);
+  }
+
+  updateHeaderCondensed();
+  window.addEventListener('scroll', updateHeaderCondensed, { passive: true });
+})();
+</script>
 
 </body>
 </html>
