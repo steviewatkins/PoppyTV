@@ -1978,6 +1978,175 @@ html {
   }
 }
 
+
+/* Final mobile polish: nav seam + upload modal sizing */
+@media (max-width: 768px) {
+  .catalogue,
+  .cat-section,
+  #compilations,
+  .decade-group,
+  .card-grid,
+  .card-row {
+    overflow: visible !important;
+  }
+
+  body {
+    overflow-x: hidden !important;
+  }
+
+  .catalogue {
+    padding-bottom: 230px !important;
+  }
+
+  .mobile-bottom-nav {
+    z-index: 9999 !important;
+    bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    backdrop-filter: blur(20px) !important;
+  }
+
+  .mobile-bottom-nav::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: -34px;
+    height: 34px;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(2, 9, 13, 0.82), transparent);
+  }
+
+  /* Upload modal becomes a scrollable mobile sheet */
+  #upload-modal,
+  .upload-modal,
+  .upload-overlay {
+    align-items: flex-end !important;
+    justify-content: center !important;
+    padding: 12px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  #upload-modal .upload-panel,
+  #upload-modal .upload-content,
+  #upload-modal .upload-modal-content,
+  #upload-modal form,
+  .upload-panel,
+  .upload-content,
+  .upload-modal-content {
+    width: 100% !important;
+    max-width: 720px !important;
+    max-height: calc(100dvh - 96px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 18px !important;
+    padding: 20px 18px 24px !important;
+  }
+
+  #upload-modal h2,
+  .upload-modal h2,
+  .upload-content h2,
+  .upload-panel h2 {
+    font-size: 28px !important;
+    line-height: 1.05 !important;
+    margin-bottom: 8px !important;
+  }
+
+  #upload-modal p,
+  .upload-modal p,
+  .upload-content p,
+  .upload-panel p {
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 18px !important;
+  }
+
+  #upload-modal label,
+  .upload-modal label,
+  .upload-content label,
+  .upload-panel label {
+    font-size: 12px !important;
+    margin-bottom: 6px !important;
+  }
+
+  #upload-modal input,
+  .upload-modal input,
+  .upload-content input,
+  .upload-panel input {
+    min-height: 44px !important;
+    height: 44px !important;
+    font-size: 15px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  #upload-modal .cat-buttons,
+  #upload-modal .category-buttons,
+  .cat-buttons,
+  .category-buttons {
+    gap: 8px !important;
+  }
+
+  #upload-modal .cat-btn,
+  #upload-modal .category-buttons button,
+  .cat-btn,
+  .category-buttons button {
+    min-height: 40px !important;
+    height: 40px !important;
+    padding: 0 14px !important;
+    font-size: 13px !important;
+  }
+
+  #upload-modal .file-drop,
+  #upload-modal .dropzone,
+  #upload-modal .upload-drop,
+  .file-drop,
+  .dropzone,
+  .upload-drop {
+    min-height: 116px !important;
+    height: 116px !important;
+    padding: 18px !important;
+  }
+
+  #upload-submit,
+  .upload-submit {
+    min-height: 48px !important;
+    height: 48px !important;
+    margin-top: 18px !important;
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  #upload-modal .upload-panel,
+  #upload-modal .upload-content,
+  #upload-modal .upload-modal-content,
+  #upload-modal form,
+  .upload-panel,
+  .upload-content,
+  .upload-modal-content {
+    max-height: calc(100dvh - 86px) !important;
+    padding: 18px 16px 22px !important;
+  }
+
+  #upload-modal h2,
+  .upload-modal h2,
+  .upload-content h2,
+  .upload-panel h2 {
+    font-size: 26px !important;
+  }
+
+  #upload-modal .file-drop,
+  #upload-modal .dropzone,
+  #upload-modal .upload-drop,
+  .file-drop,
+  .dropzone,
+  .upload-drop {
+    min-height: 104px !important;
+    height: 104px !important;
+  }
+}
+
 </style>
 </head>
 <body id="top">
