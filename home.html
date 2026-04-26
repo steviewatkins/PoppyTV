@@ -1895,7 +1895,7 @@ body > * {
 <section id="featured-film" class="featured-film">
   <article
     class="featured-hero-card"
-    onclick="openVideo('https://iframe.mediadelivery.net/embed/636169/357b19fd-9d73-4402-8795-518c5509a073', '', 'Down South', { videoId: '357b19fd-9d73-4402-8795-518c5509a073', year: '2006', category: 'holidays' })"
+    onclick="openVideo('https://iframe.mediadelivery.net/embed/636169/357b19fd-9d73-4402-8795-518c5509a073', buildDownloadUrl('357b19fd-9d73-4402-8795-518c5509a073', 'Down South', '2006'), 'Down South', { videoId: '357b19fd-9d73-4402-8795-518c5509a073', year: '2006', category: 'holidays' })"
     aria-label="Watch Down South"
   >
     <picture class="featured-picture">
@@ -1965,16 +1965,32 @@ var observer = new IntersectionObserver(function(entries) {
 if (heroEl && stickyNav) observer.observe(heroEl);
 
 // Event delegation — handles all card taps including on mobile
+
+function extractVideoIdFromEmbed(embedUrl) {
+  const match = String(embedUrl || '').match(/\/embed\/\d+\/([^?\/]+)/);
+  return match ? match[1] : '';
+}
+
+function getDownloadUrlForCard(card, embedUrl) {
+  const videoId = card.dataset.videoId || extractVideoIdFromEmbed(embedUrl);
+  if (!videoId) return card.dataset.dl || '#';
+  const title = card.dataset.title || '';
+  const year = card.dataset.sortyear || '';
+  const filename = card.dataset.filename || '';
+  return buildDownloadUrl(videoId, title, year, filename);
+}
+
 var catalogueEl = document.querySelector('.catalogue');
 if (catalogueEl) catalogueEl.addEventListener('click', function(e) {
   var card = e.target.closest('.card');
   if (!card) return;
   var embedUrl = card.dataset.embed;
-  var dlUrl = card.dataset.dl;
   var title = card.dataset.title;
   if (!embedUrl) return;
+  var videoId = card.dataset.videoId || extractVideoIdFromEmbed(embedUrl);
+  var dlUrl = getDownloadUrlForCard(card, embedUrl);
   openVideo(embedUrl, dlUrl, title || '', {
-    videoId: card.dataset.videoId || '',
+    videoId: videoId,
     source: card.dataset.uploadSource || 'original',
     uploadedBy: card.dataset.uploadedBy || '',
     year: card.dataset.sortyear || '',
@@ -2362,6 +2378,8 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
 <script>
 // ── UPLOAD MODAL + COMMUNITY UPLOADS ────────────────────────────────────────
 const WORKER_URL = 'https://poppytv-upload-worker.hello-291.workers.dev';
+const WORKER_BASE_URL = WORKER_URL;
+const THUMBNAIL_CACHE_VERSION = '20260426a';
 const BUNNY_LIBRARY_ID = '636169';
 const BUNNY_CDN_HOST = 'vz-82cf94cd-f52.b-cdn.net';
 const BUNNY_TUS_ENDPOINT = 'https://video.bunnycdn.com/tusupload';
@@ -2527,8 +2545,12 @@ function buildEmbedUrl(videoId) {
   return `https://player.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${videoId}?autoplay=true&preload=true`;
 }
 
-function buildDownloadUrl(videoId) {
-  return `https://snowy-flower-fbec.hello-291.workers.dev/?url=https://${BUNNY_CDN_HOST}/${videoId}/play_720p.mp4&download=1`;
+function buildDownloadUrl(videoId, title, year, filename) {
+  const params = new URLSearchParams({ videoId });
+  if (title) params.set('title', title);
+  if (year) params.set('year', year);
+  if (filename) params.set('filename', filename);
+  return `${WORKER_URL}/download?${params.toString()}`;
 }
 
 function buildThumbnailUrl(videoId, savedThumbnailUrl) {
@@ -2538,10 +2560,10 @@ function buildThumbnailUrl(videoId, savedThumbnailUrl) {
   });
 
   if (savedThumbnailUrl) {
-    params.set("fallback", savedThumbnailUrl);
+    params.set('fallback', savedThumbnailUrl);
   }
 
-  return `${WORKER_BASE_URL}/thumbnail?${params.toString()}`;
+  return `${WORKER_URL}/thumbnail?${params.toString()}`;
 }
 
 function handleThumbnailError(img) {
@@ -2553,7 +2575,7 @@ function createCommunityCard(upload) {
   const card = document.createElement('div');
   card.className = 'card';
   card.dataset.embed = buildEmbedUrl(upload.videoId);
-  card.dataset.dl = buildDownloadUrl(upload.videoId);
+  card.dataset.dl = buildDownloadUrl(upload.videoId, upload.title || 'Untitled', upload.year || '', upload.originalFileName || upload.fileName || '');
   card.dataset.title = upload.title || 'Untitled';
   card.dataset.videoId = upload.videoId;
   card.dataset.uploadSource = 'community';
@@ -2696,7 +2718,7 @@ async function submitUpload() {
     const saveRes = await fetch(`${WORKER_URL}/save-video`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ videoId: creds.videoId, title, year, submittedBy: name, category: cat }),
+      body: JSON.stringify({ videoId: creds.videoId, title, year, submittedBy: name, category: cat, originalFileName: file.name }),
     });
     if (!saveRes.ok) throw new Error('Video uploaded but could not save details. Contact Stevie.');
 
