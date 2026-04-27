@@ -256,15 +256,6 @@
       .cat-section { margin-bottom: 72px; }
       html, body { max-width: 100%; overflow-x: hidden; }
     }
-    @media (max-width: 1000px) and (min-width: 769px) {
-      .card-grid, .card-row { grid-template-columns: repeat(3, 1fr); }
-      .logo-svg { width: 50%; }
-    }
-  
-
-
-
-
 /* ─────────────────────────────────────────────
    PoppyTV dark cinematic direction
    Keeps existing logo, lightbox, upload, and data logic intact.
@@ -638,50 +629,6 @@ body > * {
 .upload-overlay,
 #lightbox {
   color: #fff;
-}
-
-@media (max-width: 900px) {
-  .hero {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 18px;
-    padding: 18px 5% !important;
-  }
-
-  .hero-shortcuts {
-    gap: 18px !important;
-    width: 100%;
-  }
-
-  .upload-btn {
-    margin-left: 0 !important;
-  }
-
-  .catalogue {
-    padding: 24px 5% 90px !important;
-  }
-
-  .featured-hero-card {
-    aspect-ratio: 16 / 9;
-    min-height: 360px;
-  }
-
-  .featured-hero-copy {
-    left: 24px;
-    right: 24px;
-    width: auto;
-    top: auto;
-    bottom: 24px;
-    justify-content: flex-end;
-  }
-
-  .featured-hero-copy h1 {
-    font-size: 42px;
-  }
-
-  .featured-hero-copy p {
-    display: none;
-  }
 }
 
 @media (max-width: 768px) {
@@ -2616,6 +2563,138 @@ body.header-small .upload-btn {
   }
 }
 
+
+/* Final desktop/tablet cleanup: no in-between breakpoint */
+@media (min-width: 769px) {
+  body {
+    padding-top: 74px !important;
+  }
+
+  .hero {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 42px !important;
+    min-height: 74px !important;
+    height: 74px !important;
+    padding: 16px 2.5% !important;
+  }
+
+  .hero-logo-wrap {
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  .logo-svg {
+    width: 150px !important;
+    max-width: 150px !important;
+  }
+
+  .hero-shortcuts {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 34px !important;
+    width: auto !important;
+    flex: 1 1 auto !important;
+  }
+
+  .hero-shortcuts .shortcut-btn {
+    display: inline-flex !important;
+  }
+
+  .hero-shortcuts .upload-btn {
+    margin-left: auto !important;
+  }
+
+  .featured-hero-card {
+    aspect-ratio: 3.95 / 1 !important;
+    min-height: 330px !important;
+    max-height: 430px !important;
+    border-radius: 14px !important;
+  }
+
+  .featured-hero-copy {
+    left: 36px !important;
+    top: 32px !important;
+    bottom: 30px !important;
+    right: auto !important;
+    width: min(430px, 46%) !important;
+    justify-content: center !important;
+  }
+
+  .featured-hero-copy p {
+    display: block !important;
+  }
+
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+}
+
+
+/* Mobile typography consistency with desktop */
+@media (max-width: 768px) {
+  .featured-hero-copy h1 {
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.045em !important;
+  }
+
+  .featured-hero-copy p {
+    display: block !important;
+    font-family: "Work Sans", sans-serif !important;
+    font-style: normal !important;
+    font-size: 14px !important;
+    line-height: 1.48 !important;
+    color: rgba(158, 214, 217, 0.82) !important;
+  }
+
+  .card-title,
+  #vhs .card-title,
+  #short-films .card-title,
+  #compilations .card-title {
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-style: italic !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.015em !important;
+    line-height: 1.25 !important;
+    color: rgba(242, 255, 255, 0.92) !important;
+  }
+
+  .card-year,
+  #vhs .card-year,
+  #short-films .card-year,
+  #compilations .card-year {
+    font-family: "Work Sans", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    color: #9ED6D9 !important;
+  }
+}
+
+
+/* Upload modal title refinement */
+#upload-modal h1,
+#upload-modal h2,
+.upload-modal h1,
+.upload-modal h2,
+.upload-panel h1,
+.upload-panel h2,
+.upload-content h1,
+.upload-content h2,
+.upload-modal-content h1,
+.upload-modal-content h2 {
+  font-family: "Work Sans", sans-serif !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.05 !important;
+}
+
 </style>
 </head>
 <body id="top">
@@ -2885,7 +2964,7 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
   <div class="upload-modal">
     <button type="button" class="upload-close" onclick="closeUploadModal()">×</button>
 
-    <h2 class="upload-title">Upload a Compilation</h2>
+    <h2 class="upload-title">Upload a Film</h2>
     <p class="upload-subtitle">Share a memory with the family</p>
 
     <div id="upload-form">
