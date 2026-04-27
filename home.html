@@ -2617,16 +2617,14 @@ body.header-small .upload-btn {
 }
 
 
-
-
-/* Unified mobile header + nav control bar */
+/* Unified one-piece mobile header/nav */
 @media (max-width: 768px) {
   body {
-    padding-top: 112px !important;
+    padding-top: 88px !important;
   }
 
   body.header-small {
-    padding-top: 96px !important;
+    padding-top: 76px !important;
   }
 
   .hero {
@@ -2639,20 +2637,20 @@ body.header-small .upload-btn {
     display: grid !important;
     grid-template-columns: auto 1fr auto !important;
     align-items: center !important;
-    gap: 10px !important;
+    gap: 9px !important;
 
     width: auto !important;
-    min-height: 64px !important;
+    min-height: 58px !important;
     height: auto !important;
 
-    padding: 10px 12px !important;
-    padding-right: 12px !important;
+    padding: 8px 10px !important;
+    padding-right: 10px !important;
 
     border-radius: 22px !important;
     border: 1px solid rgba(0, 214, 214, 0.18) !important;
 
     background:
-      radial-gradient(460px 170px at 0% 0%, rgba(0, 214, 214, 0.26), transparent 70%),
+      radial-gradient(480px 170px at 0% 0%, rgba(0, 214, 214, 0.22), transparent 72%),
       linear-gradient(90deg, rgba(0, 182, 192, 0.10), rgba(2, 9, 13, 0.72) 68%),
       rgba(2, 9, 13, 0.72) !important;
 
@@ -2666,11 +2664,11 @@ body.header-small .upload-btn {
 
   body.header-small .hero {
     top: 8px !important;
-    min-height: 54px !important;
-    padding-top: 8px !important;
-    padding-bottom: 8px !important;
+    min-height: 50px !important;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
     background:
-      radial-gradient(360px 140px at 0% 0%, rgba(0, 214, 214, 0.16), transparent 70%),
+      radial-gradient(360px 140px at 0% 0%, rgba(0, 214, 214, 0.13), transparent 72%),
       rgba(2, 9, 13, 0.58) !important;
   }
 
@@ -2688,14 +2686,74 @@ body.header-small .upload-btn {
   }
 
   .logo-svg {
-    width: 112px !important;
-    max-width: 112px !important;
+    width: 100px !important;
+    max-width: 100px !important;
     display: block !important;
   }
 
   body.header-small .logo-svg {
-    width: 96px !important;
-    max-width: 96px !important;
+    width: 90px !important;
+    max-width: 90px !important;
+  }
+
+  /* nav now lives inside the same glass header */
+  .mobile-bottom-nav {
+    grid-column: 2 !important;
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    z-index: 1 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .mobile-bottom-nav::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .mobile-bottom-link {
+    min-height: 32px !important;
+    height: 32px !important;
+    padding: 0 8px !important;
+    border-radius: 999px !important;
+
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+
+    color: rgba(158,214,217,0.74) !important;
+    font-size: 10.5px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    text-decoration: none !important;
+  }
+
+  .mobile-bottom-link.is-active,
+  .mobile-bottom-link:hover {
+    color: #fff !important;
+    background: rgba(0, 182, 192, 0.16) !important;
+  }
+
+  .mobile-bottom-icon {
+    display: none !important;
   }
 
   .hero-shortcuts {
@@ -2723,10 +2781,10 @@ body.header-small .upload-btn {
     top: auto !important;
     transform: none !important;
 
-    height: 34px !important;
+    height: 32px !important;
     min-width: 0 !important;
     width: auto !important;
-    padding: 0 11px !important;
+    padding: 0 9px !important;
 
     align-items: center !important;
     justify-content: center !important;
@@ -2736,14 +2794,14 @@ body.header-small .upload-btn {
     background: rgba(0, 182, 192, 0.10) !important;
     color: #7FF4F0 !important;
 
-    font-size: 11px !important;
+    font-size: 10.5px !important;
     font-weight: 700 !important;
     line-height: 1 !important;
   }
 
   .upload-btn span {
     display: inline !important;
-    font-size: 11px !important;
+    font-size: 10.5px !important;
     line-height: 1 !important;
   }
 
@@ -2751,78 +2809,12 @@ body.header-small .upload-btn {
     display: none !important;
   }
 
-  .mobile-bottom-nav {
-    position: fixed !important;
-    top: 76px !important;
-    left: 12px !important;
-    right: 12px !important;
-    bottom: auto !important;
-    z-index: 21999 !important;
-
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 4px !important;
-
-    margin: 0 !important;
-    padding: 6px !important;
-
-    border-radius: 20px !important;
-    border: 1px solid rgba(0, 214, 214, 0.12) !important;
-
-    background: rgba(2, 9, 13, 0.52) !important;
-
-    backdrop-filter: blur(20px) saturate(115%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(115%) !important;
-
-    box-shadow:
-      0 12px 36px rgba(0,0,0,0.30),
-      0 0 0 1px rgba(0,214,214,0.04) !important;
-  }
-
-  body.header-small .mobile-bottom-nav {
-    top: 66px !important;
-    background: rgba(2, 9, 13, 0.46) !important;
-  }
-
-  .mobile-bottom-nav::before {
-    display: none !important;
-    content: none !important;
-  }
-
-  .mobile-bottom-link {
-    min-height: 38px !important;
-    border-radius: 16px !important;
-    gap: 3px !important;
-
-    color: rgba(158,214,217,0.74) !important;
-    font-size: 10.5px !important;
-    font-weight: 500 !important;
-    line-height: 1 !important;
-
-    transition:
-      color 0.2s ease,
-      background 0.2s ease,
-      opacity 0.2s ease !important;
-  }
-
-  .mobile-bottom-link.is-active,
-  .mobile-bottom-link:hover {
-    color: #fff !important;
-    background: rgba(0, 182, 192, 0.16) !important;
-  }
-
-  .mobile-bottom-icon {
-    width: 17px !important;
-    height: 17px !important;
-    color: #00D6D6 !important;
-  }
-
   .catalogue {
-    padding-top: 84px !important;
+    padding-top: 20px !important;
   }
 
   body.header-small .catalogue {
-    padding-top: 78px !important;
+    padding-top: 16px !important;
   }
 
   #upload-modal,
@@ -2840,74 +2832,53 @@ body.header-small .upload-btn {
 
 @media (max-width: 430px) {
   body {
-    padding-top: 106px !important;
+    padding-top: 82px !important;
   }
 
   body.header-small {
-    padding-top: 92px !important;
+    padding-top: 72px !important;
   }
 
   .hero {
     top: 8px !important;
-    left: 10px !important;
-    right: 10px !important;
-    min-height: 60px !important;
-    padding: 9px 10px !important;
-    gap: 8px !important;
+    left: 8px !important;
+    right: 8px !important;
+    min-height: 54px !important;
+    grid-template-columns: auto 1fr auto !important;
+    gap: 6px !important;
+    padding: 7px 8px !important;
   }
 
   body.header-small .hero {
-    min-height: 52px !important;
+    min-height: 48px !important;
   }
 
   .logo-svg {
-    width: 104px !important;
-    max-width: 104px !important;
+    width: 88px !important;
+    max-width: 88px !important;
   }
 
   body.header-small .logo-svg {
-    width: 92px !important;
-    max-width: 92px !important;
+    width: 78px !important;
+    max-width: 78px !important;
+  }
+
+  .mobile-bottom-link {
+    height: 30px !important;
+    min-height: 30px !important;
+    padding: 0 6px !important;
+    font-size: 9.5px !important;
   }
 
   .hero-shortcuts .upload-btn,
   .upload-btn {
-    height: 32px !important;
-    padding: 0 9px !important;
-    font-size: 10.5px !important;
+    height: 30px !important;
+    padding: 0 8px !important;
+    font-size: 9.5px !important;
   }
 
   .upload-btn span {
-    font-size: 10.5px !important;
-  }
-
-  .mobile-bottom-nav {
-    top: 70px !important;
-    left: 10px !important;
-    right: 10px !important;
-    padding: 5px !important;
-  }
-
-  body.header-small .mobile-bottom-nav {
-    top: 62px !important;
-  }
-
-  .mobile-bottom-link {
-    min-height: 36px !important;
-    font-size: 10px !important;
-  }
-
-  .mobile-bottom-icon {
-    width: 16px !important;
-    height: 16px !important;
-  }
-
-  .catalogue {
-    padding-top: 80px !important;
-  }
-
-  body.header-small .catalogue {
-    padding-top: 72px !important;
+    font-size: 9.5px !important;
   }
 }
 
@@ -2957,7 +2928,33 @@ body.header-small .upload-btn {
 <path d="M1.29294 95.0851V0H46.4584C53.5017 0 59.5326 1.23258 64.551 3.69775C69.6574 6.16292 73.5752 9.59655 76.3045 13.9986C79.1219 18.4007 80.5306 23.5512 80.5306 29.45C80.5306 35.3488 79.1219 40.5432 76.3045 45.0334C73.4872 49.5235 69.5253 53.0452 64.4189 55.5984C59.4005 58.0636 53.4137 59.2961 46.4584 59.2961H17.4046V43.7128H45.4019C50.0681 43.7128 53.6778 42.4361 56.231 39.8829C58.8722 37.2417 60.1929 33.8081 60.1929 29.582C60.1929 25.356 58.8722 21.9664 56.231 19.4132C53.6778 16.86 50.0681 15.5834 45.4019 15.5834H21.6306V95.0851H1.29294Z" fill="white"/>
 <path d="M117.564 26.56C125.048 26.56 131.563 28.0131 137.109 30.9184C142.744 33.8237 147.102 37.8734 150.184 43.0678C153.265 48.2622 154.806 54.3372 154.806 61.2924C154.806 68.2477 153.221 74.4112 150.052 79.7817C146.97 85.064 142.612 89.2014 136.978 92.1948C131.431 95.1001 124.96 96.5531 117.564 96.5532C110.169 96.5532 103.653 95.1001 98.0185 92.1948C92.4722 89.2014 88.1137 85.064 84.9443 79.7817C81.8629 74.4112 80.3222 68.2477 80.3222 61.2924C80.3223 54.3373 81.8629 48.2622 84.9443 43.0678C88.1137 37.8735 92.4721 33.8237 98.0185 30.9184C103.653 28.013 110.169 26.56 117.564 26.56ZM108.968 41.4614C107.244 40.4661 105.089 41.71 105.089 43.7006V79.5317C105.089 81.5221 107.244 82.7662 108.968 81.7709L139.998 63.8549C141.722 62.8595 141.722 60.3717 139.998 59.3764L108.968 41.4614Z" fill="white"/>
 </svg></a></div>
-<div class="hero-shortcuts"><a href="#compilations-anchor" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Compilations</span><span class="mobile-label">Compilations</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a><button type="button" class="upload-btn" onclick="openUploadModal()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Upload Video</span></button></div>
+<div class="hero-shortcuts"><a href="#compilations-anchor" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Compilations</span><span class="mobile-label">Compilations</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a><button type="button" class="upload-btn" onclick="openUploadModal()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Upload Video</span></button>
+<nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+<a href="#compilations-anchor" class="mobile-bottom-link">
+    <svg class="mobile-bottom-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3.5" y="5" width="17" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M10 9l5 3-5 3V9Z" fill="currentColor"/>
+    </svg>
+    <span>Compilations</span>
+  </a>
+  <a href="#vhs" class="mobile-bottom-link">
+    <svg class="mobile-bottom-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="8" cy="12" r="2" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="16" cy="12" r="2" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M8 12h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <span>VHS</span>
+  </a>
+  <a href="#short-films" class="mobile-bottom-link">
+    <svg class="mobile-bottom-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 4v16M16 4v16M5 9h3M5 15h3M16 9h3M16 15h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+    <span>Shorts</span>
+  </a>
+</nav>
+</div>
 </div>
 
 <div class="catalogue">
@@ -3848,44 +3845,6 @@ loadCommunityUploads();
   });
 })();
 </script>
-
-
-
-<nav class="mobile-bottom-nav" aria-label="Mobile navigation">
-  <a href="#hero-top" class="mobile-bottom-link">
-    <svg class="mobile-bottom-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M4 10.5L12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-    </svg>
-    <span>Home</span>
-  </a>
-  <a href="#compilations-anchor" class="mobile-bottom-link">
-    <svg class="mobile-bottom-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3.5" y="5" width="17" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
-      <path d="M10 9l5 3-5 3V9Z" fill="currentColor"/>
-    </svg>
-    <span>Compilations</span>
-  </a>
-  <a href="#vhs" class="mobile-bottom-link">
-    <svg class="mobile-bottom-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/>
-      <circle cx="8" cy="12" r="2" stroke="currentColor" stroke-width="1.6"/>
-      <circle cx="16" cy="12" r="2" stroke="currentColor" stroke-width="1.6"/>
-      <path d="M8 12h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    </svg>
-    <span>VHS</span>
-  </a>
-  <a href="#short-films" class="mobile-bottom-link">
-    <svg class="mobile-bottom-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/>
-      <path d="M8 4v16M16 4v16M5 9h3M5 15h3M16 9h3M16 15h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-    </svg>
-    <span>Shorts</span>
-  </a>
-</nav>
-
-
-
-
 <script>
 (function() {
   const navLinks = Array.from(document.querySelectorAll(
