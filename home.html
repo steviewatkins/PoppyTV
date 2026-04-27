@@ -2617,28 +2617,43 @@ body.header-small .upload-btn {
 }
 
 
-/* Mobile nav moved under header as unified glass control strip */
+
+
+/* Unified mobile header + nav control bar */
 @media (max-width: 768px) {
-  .mobile-bottom-nav {
+  body {
+    padding-top: 112px !important;
+  }
+
+  body.header-small {
+    padding-top: 96px !important;
+  }
+
+  .hero {
     position: fixed !important;
+    top: 10px !important;
     left: 12px !important;
     right: 12px !important;
-    bottom: auto !important;
-    top: 70px !important;
-    z-index: 21000 !important;
+    z-index: 22000 !important;
 
     display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 4px !important;
+    grid-template-columns: auto 1fr auto !important;
+    align-items: center !important;
+    gap: 10px !important;
 
-    padding: 7px !important;
-    margin: 0 !important;
+    width: auto !important;
+    min-height: 64px !important;
+    height: auto !important;
+
+    padding: 10px 12px !important;
+    padding-right: 12px !important;
 
     border-radius: 22px !important;
     border: 1px solid rgba(0, 214, 214, 0.18) !important;
 
     background:
-      radial-gradient(420px 140px at 0% 0%, rgba(0, 214, 214, 0.16), transparent 70%),
+      radial-gradient(460px 170px at 0% 0%, rgba(0, 214, 214, 0.26), transparent 70%),
+      linear-gradient(90deg, rgba(0, 182, 192, 0.10), rgba(2, 9, 13, 0.72) 68%),
       rgba(2, 9, 13, 0.72) !important;
 
     backdrop-filter: blur(22px) saturate(120%) !important;
@@ -2649,11 +2664,124 @@ body.header-small .upload-btn {
       0 0 0 1px rgba(0,214,214,0.06) !important;
   }
 
-  body.header-small .mobile-bottom-nav {
-    top: 54px !important;
+  body.header-small .hero {
+    top: 8px !important;
+    min-height: 54px !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
     background:
-      radial-gradient(360px 120px at 0% 0%, rgba(0, 214, 214, 0.10), transparent 70%),
+      radial-gradient(360px 140px at 0% 0%, rgba(0, 214, 214, 0.16), transparent 70%),
       rgba(2, 9, 13, 0.58) !important;
+  }
+
+  .hero-logo-wrap {
+    grid-column: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+    flex: none !important;
+  }
+
+  .hero-logo-link {
+    display: block !important;
+    line-height: 0 !important;
+  }
+
+  .logo-svg {
+    width: 112px !important;
+    max-width: 112px !important;
+    display: block !important;
+  }
+
+  body.header-small .logo-svg {
+    width: 96px !important;
+    max-width: 96px !important;
+  }
+
+  .hero-shortcuts {
+    grid-column: 3 !important;
+    position: static !important;
+    transform: none !important;
+    display: flex !important;
+    width: auto !important;
+    gap: 0 !important;
+    margin: 0 !important;
+    z-index: 3 !important;
+  }
+
+  .hero-shortcuts .shortcut-btn {
+    display: none !important;
+  }
+
+  .hero-shortcuts .upload-btn,
+  .upload-btn {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+
+    height: 34px !important;
+    min-width: 0 !important;
+    width: auto !important;
+    padding: 0 11px !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 999px !important;
+    border: 1px solid rgba(0, 214, 214, 0.74) !important;
+    background: rgba(0, 182, 192, 0.10) !important;
+    color: #7FF4F0 !important;
+
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+  }
+
+  .upload-btn span {
+    display: inline !important;
+    font-size: 11px !important;
+    line-height: 1 !important;
+  }
+
+  .upload-btn svg {
+    display: none !important;
+  }
+
+  .mobile-bottom-nav {
+    position: fixed !important;
+    top: 76px !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: auto !important;
+    z-index: 21999 !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 4px !important;
+
+    margin: 0 !important;
+    padding: 6px !important;
+
+    border-radius: 20px !important;
+    border: 1px solid rgba(0, 214, 214, 0.12) !important;
+
+    background: rgba(2, 9, 13, 0.52) !important;
+
+    backdrop-filter: blur(20px) saturate(115%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(115%) !important;
+
+    box-shadow:
+      0 12px 36px rgba(0,0,0,0.30),
+      0 0 0 1px rgba(0,214,214,0.04) !important;
+  }
+
+  body.header-small .mobile-bottom-nav {
+    top: 66px !important;
+    background: rgba(2, 9, 13, 0.46) !important;
   }
 
   .mobile-bottom-nav::before {
@@ -2662,11 +2790,15 @@ body.header-small .upload-btn {
   }
 
   .mobile-bottom-link {
-    min-height: 42px !important;
-    border-radius: 17px !important;
-    color: rgba(158,214,217,0.76) !important;
+    min-height: 38px !important;
+    border-radius: 16px !important;
+    gap: 3px !important;
+
+    color: rgba(158,214,217,0.74) !important;
     font-size: 10.5px !important;
+    font-weight: 500 !important;
     line-height: 1 !important;
+
     transition:
       color 0.2s ease,
       background 0.2s ease,
@@ -2680,22 +2812,19 @@ body.header-small .upload-btn {
   }
 
   .mobile-bottom-icon {
-    width: 18px !important;
-    height: 18px !important;
+    width: 17px !important;
+    height: 17px !important;
     color: #00D6D6 !important;
   }
 
-  /* Because nav is now under the header, give the first content enough clearance. */
   .catalogue {
-    padding-top: 78px !important;
-    padding-bottom: 120px !important;
+    padding-top: 84px !important;
   }
 
   body.header-small .catalogue {
-    padding-top: 70px !important;
+    padding-top: 78px !important;
   }
 
-  /* Keep overlays above the nav strip. */
   #upload-modal,
   .upload-modal,
   .upload-overlay,
@@ -2710,27 +2839,75 @@ body.header-small .upload-btn {
 }
 
 @media (max-width: 430px) {
-  .mobile-bottom-nav {
+  body {
+    padding-top: 106px !important;
+  }
+
+  body.header-small {
+    padding-top: 92px !important;
+  }
+
+  .hero {
+    top: 8px !important;
     left: 10px !important;
     right: 10px !important;
-    top: 66px !important;
+    min-height: 60px !important;
+    padding: 9px 10px !important;
+    gap: 8px !important;
+  }
+
+  body.header-small .hero {
+    min-height: 52px !important;
+  }
+
+  .logo-svg {
+    width: 104px !important;
+    max-width: 104px !important;
+  }
+
+  body.header-small .logo-svg {
+    width: 92px !important;
+    max-width: 92px !important;
+  }
+
+  .hero-shortcuts .upload-btn,
+  .upload-btn {
+    height: 32px !important;
+    padding: 0 9px !important;
+    font-size: 10.5px !important;
+  }
+
+  .upload-btn span {
+    font-size: 10.5px !important;
+  }
+
+  .mobile-bottom-nav {
+    top: 70px !important;
+    left: 10px !important;
+    right: 10px !important;
+    padding: 5px !important;
   }
 
   body.header-small .mobile-bottom-nav {
-    top: 52px !important;
+    top: 62px !important;
   }
 
   .mobile-bottom-link {
-    min-height: 40px !important;
+    min-height: 36px !important;
     font-size: 10px !important;
   }
 
+  .mobile-bottom-icon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
   .catalogue {
-    padding-top: 74px !important;
+    padding-top: 80px !important;
   }
 
   body.header-small .catalogue {
-    padding-top: 66px !important;
+    padding-top: 72px !important;
   }
 }
 
