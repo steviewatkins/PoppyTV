@@ -1183,7 +1183,7 @@ body > * {
     z-index: 3 !important;
   }
 
-  .mobile-bottom-nav a[href="#compilations"] span:last-child {
+  .mobile-bottom-nav a[href="#compilations-anchor"] span:last-child {
     font-size: 10.5px;
   }
 }
@@ -2490,6 +2490,132 @@ body.header-small .hero {
   }
 }
 
+
+/* Force header to stay visible on desktop + mobile */
+.hero {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 22000 !important;
+}
+
+body {
+  padding-top: 74px !important;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 62px !important;
+  }
+
+  body.header-small {
+    padding-top: 50px !important;
+  }
+
+  .hero {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 22000 !important;
+  }
+}
+
+
+/* Header shrink + translucent blur + nav anchor behaviour */
+.hero {
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  transition:
+    height 0.24s ease,
+    min-height 0.24s ease,
+    padding 0.24s ease,
+    background 0.24s ease,
+    box-shadow 0.24s ease,
+    opacity 0.24s ease !important;
+}
+
+.hero-logo-link {
+  display: block;
+  line-height: 0;
+}
+
+.section-anchor {
+  display: block;
+  position: relative;
+  top: -88px;
+  visibility: hidden;
+}
+
+body.header-small .hero {
+  min-height: 54px !important;
+  height: 54px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  background:
+    radial-gradient(820px 260px at -8% -25%, rgba(0, 245, 245, 0.34), transparent 72%),
+    linear-gradient(90deg, rgba(0, 182, 192, 0.18) 0%, rgba(2, 9, 13, 0.76) 74%),
+    rgba(2, 9, 13, 0.76) !important;
+  box-shadow: 0 18px 48px rgba(0,0,0,0.26) !important;
+}
+
+body.header-small .logo-svg {
+  width: 118px !important;
+  max-width: 118px !important;
+}
+
+body.header-small .shortcut-btn {
+  font-size: 12px !important;
+}
+
+body.header-small .upload-btn {
+  height: 34px !important;
+  padding: 0 12px !important;
+  font-size: 12px !important;
+}
+
+.mobile-bottom-link.is-active {
+  color: #fff !important;
+  background: rgba(0, 182, 192, 0.16) !important;
+}
+
+.mobile-bottom-link.is-active .mobile-bottom-icon {
+  color: #00D6D6 !important;
+}
+
+@media (max-width: 768px) {
+  .section-anchor {
+    top: -68px;
+  }
+
+  body.header-small .hero {
+    min-height: 48px !important;
+    height: 48px !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    background:
+      radial-gradient(620px 220px at -8% -20%, rgba(0, 245, 245, 0.34), transparent 72%),
+      linear-gradient(90deg, rgba(0, 182, 192, 0.16) 0%, rgba(2, 9, 13, 0.78) 74%),
+      rgba(2, 9, 13, 0.78) !important;
+  }
+
+  body.header-small .logo-svg {
+    width: 108px !important;
+    max-width: 108px !important;
+  }
+
+  body.header-small .upload-btn {
+    height: 32px !important;
+    padding: 0 10px !important;
+    font-size: 11px !important;
+  }
+
+  body.header-small .upload-btn span {
+    font-size: 11px !important;
+  }
+}
+
 </style>
 </head>
 <body id="top">
@@ -2505,7 +2631,7 @@ body.header-small .hero {
 <path d="M1.29294 95.0851V0H46.4584C53.5017 0 59.5326 1.23258 64.551 3.69775C69.6574 6.16292 73.5752 9.59655 76.3045 13.9986C79.1219 18.4007 80.5306 23.5512 80.5306 29.45C80.5306 35.3488 79.1219 40.5432 76.3045 45.0334C73.4872 49.5235 69.5253 53.0452 64.4189 55.5984C59.4005 58.0636 53.4137 59.2961 46.4584 59.2961H17.4046V43.7128H45.4019C50.0681 43.7128 53.6778 42.4361 56.231 39.8829C58.8722 37.2417 60.1929 33.8081 60.1929 29.582C60.1929 25.356 58.8722 21.9664 56.231 19.4132C53.6778 16.86 50.0681 15.5834 45.4019 15.5834H21.6306V95.0851H1.29294Z" fill="white"/>
 <path d="M117.564 26.56C125.048 26.56 131.563 28.0131 137.109 30.9184C142.744 33.8237 147.102 37.8734 150.184 43.0678C153.265 48.2622 154.806 54.3372 154.806 61.2924C154.806 68.2477 153.221 74.4112 150.052 79.7817C146.97 85.064 142.612 89.2014 136.978 92.1948C131.431 95.1001 124.96 96.5531 117.564 96.5532C110.169 96.5532 103.653 95.1001 98.0185 92.1948C92.4722 89.2014 88.1137 85.064 84.9443 79.7817C81.8629 74.4112 80.3222 68.2477 80.3222 61.2924C80.3223 54.3373 81.8629 48.2622 84.9443 43.0678C88.1137 37.8735 92.4721 33.8237 98.0185 30.9184C103.653 28.013 110.169 26.56 117.564 26.56ZM108.968 41.4614C107.244 40.4661 105.089 41.71 105.089 43.7006V79.5317C105.089 81.5221 107.244 82.7662 108.968 81.7709L139.998 63.8549C141.722 62.8595 141.722 60.3717 139.998 59.3764L108.968 41.4614Z" fill="white"/>
 </svg></a>
-  <div class="sticky-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Compilations</span><span class="mobile-label">Comps</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a></div>
+  <div class="sticky-shortcuts"><a href="#compilations-anchor" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Compilations</span><span class="mobile-label">Comps</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a></div>
   <button type="button" class="upload-btn" onclick="openUploadModal()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <span>Upload Video</span>
@@ -2527,7 +2653,7 @@ body.header-small .hero {
 </div>
 
 <div class="hero" id="hero-top">
-  <div class="hero-logo-wrap"><svg class="logo-svg" viewBox="0 0 552 123" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="hero-logo-wrap"><a href="#hero-top" class="hero-logo-link" aria-label="PoppyTV home"><svg class="logo-svg" viewBox="0 0 552 123" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M491.172 95.0851L457.099 0H478.229L504.246 79.2376H501.737L527.885 0H547.959L513.886 95.0851H491.172Z" fill="white"/>
 <path d="M412.611 95.0851V15.5834H381.576V0H463.983V15.5834H432.948V95.0851H412.611Z" fill="white"/>
 <path d="M320.793 122.158L339.414 80.9547L342.848 75.276L360.28 27.7334H381.41L340.602 122.158H320.793ZM335.056 93.7648L309.172 27.7334H330.566L351.828 87.954L335.056 93.7648Z" fill="white"/>
@@ -2535,8 +2661,8 @@ body.header-small .hero {
 <path d="M202.849 96.4062C196.422 96.4062 191.271 94.9095 187.397 91.9161C183.523 88.9226 181.234 84.8287 180.53 79.6342L181.586 79.5022V122.158H161.777V27.7336H181.19V42.6567L180.002 42.3926C180.97 37.4622 183.611 33.5884 187.925 30.771C192.239 27.8657 197.566 26.413 203.905 26.413C209.98 26.413 215.218 27.8657 219.62 30.771C224.111 33.5884 227.544 37.5943 229.921 42.7887C232.387 47.9832 233.619 54.1021 233.619 61.1455C233.619 68.2768 232.343 74.4838 229.789 79.7663C227.236 85.0488 223.67 89.1427 219.092 92.0481C214.514 94.9535 209.1 96.4062 202.849 96.4062ZM197.302 80.5587C201.968 80.5587 205.754 78.8859 208.659 75.5403C211.565 72.1947 213.017 67.4404 213.017 61.2775C213.017 55.1146 211.521 50.4044 208.527 47.1468C205.622 43.8893 201.792 42.2605 197.038 42.2605C192.46 42.2605 188.674 43.9333 185.68 47.2789C182.775 50.5364 181.322 55.2467 181.322 61.4096C181.322 67.5725 182.775 72.3268 185.68 75.6724C188.674 78.9299 192.548 80.5587 197.302 80.5587Z" fill="white"/>
 <path d="M1.29294 95.0851V0H46.4584C53.5017 0 59.5326 1.23258 64.551 3.69775C69.6574 6.16292 73.5752 9.59655 76.3045 13.9986C79.1219 18.4007 80.5306 23.5512 80.5306 29.45C80.5306 35.3488 79.1219 40.5432 76.3045 45.0334C73.4872 49.5235 69.5253 53.0452 64.4189 55.5984C59.4005 58.0636 53.4137 59.2961 46.4584 59.2961H17.4046V43.7128H45.4019C50.0681 43.7128 53.6778 42.4361 56.231 39.8829C58.8722 37.2417 60.1929 33.8081 60.1929 29.582C60.1929 25.356 58.8722 21.9664 56.231 19.4132C53.6778 16.86 50.0681 15.5834 45.4019 15.5834H21.6306V95.0851H1.29294Z" fill="white"/>
 <path d="M117.564 26.56C125.048 26.56 131.563 28.0131 137.109 30.9184C142.744 33.8237 147.102 37.8734 150.184 43.0678C153.265 48.2622 154.806 54.3372 154.806 61.2924C154.806 68.2477 153.221 74.4112 150.052 79.7817C146.97 85.064 142.612 89.2014 136.978 92.1948C131.431 95.1001 124.96 96.5531 117.564 96.5532C110.169 96.5532 103.653 95.1001 98.0185 92.1948C92.4722 89.2014 88.1137 85.064 84.9443 79.7817C81.8629 74.4112 80.3222 68.2477 80.3222 61.2924C80.3223 54.3373 81.8629 48.2622 84.9443 43.0678C88.1137 37.8735 92.4721 33.8237 98.0185 30.9184C103.653 28.013 110.169 26.56 117.564 26.56ZM108.968 41.4614C107.244 40.4661 105.089 41.71 105.089 43.7006V79.5317C105.089 81.5221 107.244 82.7662 108.968 81.7709L139.998 63.8549C141.722 62.8595 141.722 60.3717 139.998 59.3764L108.968 41.4614Z" fill="white"/>
-</svg></div>
-<div class="hero-shortcuts"><a href="#compilations" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Compilations</span><span class="mobile-label">Compilations</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a><button type="button" class="upload-btn" onclick="openUploadModal()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Upload Video</span></button></div>
+</svg></a></div>
+<div class="hero-shortcuts"><a href="#compilations-anchor" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><span class="desktop-label">Compilations</span><span class="mobile-label">Compilations</span></a><a href="#vhs" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg><span>VHS Tapes</span></a><a href="#short-films" class="shortcut-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2z"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg><span>Short Films</span></a><button type="button" class="upload-btn" onclick="openUploadModal()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Upload Video</span></button></div>
 </div>
 
 <div class="catalogue">
@@ -2573,6 +2699,7 @@ body.header-small .hero {
   </article>
 </section>
 
+<span id="compilations-anchor" class="section-anchor"></span>
 <h2>Compilations</h2>
 
 <h3 class="subsection-label">Milestones</h3>
@@ -3430,13 +3557,13 @@ loadCommunityUploads();
 
 
 <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
-  <a href="#hero-top" class="mobile-bottom-link is-active">
+  <a href="#hero-top" class="mobile-bottom-link">
     <svg class="mobile-bottom-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M4 10.5L12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
     </svg>
     <span>Home</span>
   </a>
-  <a href="#compilations" class="mobile-bottom-link">
+  <a href="#compilations-anchor" class="mobile-bottom-link">
     <svg class="mobile-bottom-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <rect x="3.5" y="5" width="17" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
       <path d="M10 9l5 3-5 3V9Z" fill="currentColor"/>
@@ -3463,14 +3590,63 @@ loadCommunityUploads();
 
 
 
+
 <script>
 (function() {
-  function updateHeaderSmall() {
-    document.body.classList.toggle('header-small', window.scrollY > 48);
+  const navLinks = Array.from(document.querySelectorAll(
+    '.hero-shortcuts .shortcut-btn[href^="#"], .sticky-shortcuts .shortcut-btn[href^="#"], .mobile-bottom-nav .mobile-bottom-link[href^="#"]'
+  ));
+
+  const sections = [
+    { id: 'hero-top', key: '#hero-top' },
+    { id: 'compilations-anchor', key: '#compilations-anchor' },
+    { id: 'vhs', key: '#vhs' },
+    { id: 'short-films', key: '#short-films' }
+  ];
+
+  function updateHeaderAndNav() {
+    const y = window.scrollY || window.pageYOffset;
+    document.body.classList.toggle('header-small', y > 48);
+
+    let active = '#hero-top';
+    const offset = 120;
+
+    sections.forEach(function(section) {
+      const el = document.getElementById(section.id);
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + y - offset;
+      if (y >= top) active = section.key;
+    });
+
+    navLinks.forEach(function(link) {
+      link.classList.toggle('is-active', link.getAttribute('href') === active);
+    });
   }
 
-  updateHeaderSmall();
-  window.addEventListener('scroll', updateHeaderSmall, { passive: true });
+  navLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      const href = link.getAttribute('href');
+      if (!href || href.charAt(0) !== '#') return;
+
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      e.preventDefault();
+
+      const header = document.querySelector('.hero');
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      const extra = href === '#hero-top' ? 0 : 14;
+      const top = href === '#hero-top'
+        ? 0
+        : target.getBoundingClientRect().top + window.pageYOffset - headerHeight - extra;
+
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    });
+  });
+
+  updateHeaderAndNav();
+  window.addEventListener('scroll', updateHeaderAndNav, { passive: true });
+  window.addEventListener('resize', updateHeaderAndNav);
 })();
 </script>
 
