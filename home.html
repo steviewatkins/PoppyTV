@@ -3229,6 +3229,148 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
 .upload-success-state strong { color: var(--teal); }
 
 
+
+
+/* FINAL ONLY: upload modal viewport fix, desktop + mobile.
+   Keeps the existing site, nav, cards, lightbox, upload JS, and confetti unchanged. */
+#upload-modal.upload-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 30000 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px !important;
+  overflow: hidden !important;
+}
+
+#upload-modal.upload-overlay.active {
+  display: flex !important;
+}
+
+#upload-modal > .upload-modal {
+  width: min(100%, 640px) !important;
+  max-width: 640px !important;
+  max-height: calc(100dvh - 48px) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  margin: 0 !important;
+  border-radius: 22px !important;
+  padding: 32px 36px 34px !important;
+}
+
+#upload-modal > .upload-modal::before {
+  display: none !important;
+  content: none !important;
+}
+
+#upload-modal .upload-title {
+  margin-top: 0 !important;
+}
+
+#upload-modal .upload-drop {
+  min-height: 116px !important;
+}
+
+#upload-modal .upload-submit {
+  margin-top: 12px !important;
+}
+
+#confetti-overlay.confetti-overlay {
+  z-index: 31000 !important;
+}
+
+@media (max-width: 768px) {
+  #upload-modal.upload-overlay {
+    padding: 14px !important;
+    overflow: hidden !important;
+  }
+
+  #upload-modal > .upload-modal {
+    width: min(100%, 430px) !important;
+    max-width: 430px !important;
+    max-height: calc(100dvh - 28px) !important;
+    padding: 22px 18px 20px !important;
+    border-radius: 22px !important;
+  }
+
+  #upload-modal .upload-title {
+    font-size: 24px !important;
+    margin-bottom: 4px !important;
+  }
+
+  #upload-modal .upload-subtitle {
+    font-size: 13px !important;
+    margin-bottom: 16px !important;
+  }
+
+  #upload-modal .upload-field {
+    margin-bottom: 13px !important;
+  }
+
+  #upload-modal .upload-field label {
+    font-size: 11px !important;
+    margin-bottom: 5px !important;
+  }
+
+  #upload-modal input[type="text"],
+  #upload-modal input[type="number"] {
+    height: 40px !important;
+    min-height: 40px !important;
+    font-size: 14px !important;
+  }
+
+  #upload-modal .upload-cats {
+    gap: 7px !important;
+  }
+
+  #upload-modal .cat-btn {
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 11px !important;
+    font-size: 12px !important;
+  }
+
+  #upload-modal .upload-drop {
+    height: 84px !important;
+    min-height: 84px !important;
+    padding: 12px !important;
+  }
+
+  #upload-modal .upload-drop svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  #upload-modal .upload-submit {
+    height: 44px !important;
+    min-height: 44px !important;
+    margin-top: 12px !important;
+    font-size: 14px !important;
+  }
+
+  #upload-modal .upload-close {
+    top: 12px !important;
+    right: 14px !important;
+    font-size: 24px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  #upload-modal.upload-overlay {
+    padding: 12px !important;
+  }
+
+  #upload-modal > .upload-modal {
+    max-height: calc(100dvh - 24px) !important;
+    padding: 20px 16px 18px !important;
+    border-radius: 20px !important;
+  }
+
+  #upload-modal .upload-drop {
+    height: 76px !important;
+    min-height: 76px !important;
+  }
+}
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
